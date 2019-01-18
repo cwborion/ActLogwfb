@@ -1,13 +1,15 @@
 import React from 'react'
 import TodoSummary from './TodoSummary'
 
-const TodosList = () => {
+const TodosList = ({ todos }) => {
   return (
     <div className="project-list section">
 
-      <TodoSummary />
-      <TodoSummary />
-      <TodoSummary />
+     { todos && todos.map(todo => {
+       return (
+         <TodoSummary todo={todo} key={todo.id} />
+       )
+     })}
 
     </div>
   )

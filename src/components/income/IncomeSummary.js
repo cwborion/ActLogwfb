@@ -1,10 +1,10 @@
 import React from 'react'
 
-const IncomeSummary = () => {
+const IncomeSummary = ({ income }) => {
   return (
     <div className="card z-depth-0 projet-summary">
       <div className="card-content grey-text-darken-3">
-        <span className='card-title'>Income Title</span>
+        <span className='card-title'>{income.employment}</span>
         <p className='grey-text'>14th January, 5pm</p>
       </div>
     </div>

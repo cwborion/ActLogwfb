@@ -1,13 +1,15 @@
 import React from 'react'
 import ExpenseSummary from './ExpenseSummary'
 
-const ExpenseList = () => {
+const ExpenseList = ({ expenses }) => {
   return (
     <div className="section">
 
-      <ExpenseSummary />
-      <ExpenseSummary />
-      <ExpenseSummary />
+      { expenses && expenses.map(expense => {
+        return (
+          <ExpenseSummary expense={expense} key={expense.id} />
+        )
+      })}
 
     </div>
   )

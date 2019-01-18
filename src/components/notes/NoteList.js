@@ -1,13 +1,15 @@
 import React from 'react'
 import NoteSummary from './NoteSummary'
 
-const NoteList = () => {
+const NoteList = ({ notes }) => {
   return (
     <div className="project-list section">
 
-      <NoteSummary />
-      <NoteSummary />
-      <NoteSummary />
+      { notes && notes.map(note => {
+        return (
+          <NoteSummary note={note} key={note.id} />
+        )
+      })}
 
     </div>
   )
