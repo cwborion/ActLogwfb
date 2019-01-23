@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 class ExpenseDashboard extends Component {
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     const { expenses } = this.props;
 
     return (

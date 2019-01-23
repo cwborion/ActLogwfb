@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 class NoteDashboard extends Component {
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     const { notes } = this.props;
 
     return (
