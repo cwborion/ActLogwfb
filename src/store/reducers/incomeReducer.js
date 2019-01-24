@@ -7,6 +7,10 @@ const initState = {
 }
 
 const incomeReducer = (state = initState, action) => {
+  switch (action.type) {
+    case 'ADD_INCOME':
+    console.log('added income', action.income)
+  }
   return state
 }
 

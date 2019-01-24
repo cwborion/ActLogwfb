@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addExpense } from '../../store/actions/expenseActions'
 
 class AddExpense extends Component {
   state = {
@@ -15,7 +17,8 @@ class AddExpense extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
+    this.props.addExpense(this.state);
   }
 
   render() {
@@ -46,4 +49,10 @@ class AddExpense extends Component {
   }
 }
 
-export default AddExpense
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addExpense: (expense) => dispatch(addExpense(expense))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddExpense)

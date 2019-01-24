@@ -6,8 +6,12 @@ const initState = {
   ]
 }
 
-const todosReducer = (state = initState, action) => {
+const todoReducer = (state = initState, action) => {
+  switch (action.type) {
+    case 'ADD_TODO':
+    console.log('added todo', action.todo)
+  }
   return state
 }
 
-export default todosReducer
+export default todoReducer

@@ -6,8 +6,12 @@ const initState = {
   ]
 }
 
-const expensesReducer = (state = initState, action) => {
+const expenseReducer = (state = initState, action) => {
+  switch (action.type) {
+    case 'ADD_EXPENSE':
+    console.log('added expense', action.expense)
+  }
   return state
 }
 
-export default expensesReducer
+export default expenseReducer

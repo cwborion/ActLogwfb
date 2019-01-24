@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addNote } from '../../store/actions/noteActions'
 
 class AddExpense extends Component {
   state = {
@@ -14,7 +16,8 @@ class AddExpense extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
+    this.props.addNote(this.state);
   }
 
   render() {
@@ -40,4 +43,10 @@ class AddExpense extends Component {
   }
 }
 
-export default AddExpense
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addNote: (note) => dispatch(addNote(note))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddExpense)

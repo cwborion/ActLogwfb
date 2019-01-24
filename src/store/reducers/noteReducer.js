@@ -6,8 +6,12 @@ const initState = {
   ]
 }
 
-const notesReducer = (state = initState, action) => {
+const noteReducer = (state = initState, action) => {
+  switch (action.type) {
+    case 'ADD_NOTE':
+    console.log('added note', action.note)
+  }
   return state
 }
 
-export default notesReducer
+export default noteReducer

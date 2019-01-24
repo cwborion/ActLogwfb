@@ -6,8 +6,12 @@ const initState = {
   ]
 }
 
-const goalsReducer = (state = initState, action) => {
+const goalReducer = (state = initState, action) => {
+  switch (action.type) {
+    case 'ADD_GOAL':
+    console.log('added goal', action.goal)
+  }
   return state
 }
 
-export default goalsReducer
+export default goalReducer

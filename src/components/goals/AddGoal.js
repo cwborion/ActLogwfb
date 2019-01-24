@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addGoal } from '../../store/actions/goalActions'
 
 class AddGoal extends Component {
   state = {
@@ -15,7 +17,8 @@ class AddGoal extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
+    this.props.addGoal(this.state);
   }
 
   render() {
@@ -46,4 +49,10 @@ class AddGoal extends Component {
   }
 }
 
-export default AddGoal
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addGoal: (goal) => dispatch(addGoal(goal))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddGoal)

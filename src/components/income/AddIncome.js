@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addIncome } from '../../store/actions/incomeActions'
 
 class AddIncome extends Component {
   state = {
@@ -16,7 +18,8 @@ class AddIncome extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
+    this.props.addIncome(this.state);
   }
 
   render() {
@@ -52,4 +55,10 @@ class AddIncome extends Component {
   }
 }
 
-export default AddIncome
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addIncome: (income) => dispatch(addIncome(income))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddIncome)

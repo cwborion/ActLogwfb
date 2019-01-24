@@ -1,18 +1,18 @@
 import authReducer from './authReducer'
-import expensesReducer from './expensesReducer'
-import goalsReducer from './goalsReducer'
+import expenseReducer from './expenseReducer'
+import goalReducer from './goalReducer'
 import incomeReducer from './incomeReducer'
-import notesReducer from './notesReducer'
-import todosReducer from './todosReducer'
+import noteReducer from './noteReducer'
+import todoReducer from './todoReducer'
 import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  expenses: expensesReducer,
-  goals: goalsReducer,
+  expenses: expenseReducer,
+  goals: goalReducer,
   income: incomeReducer,
-  notes: notesReducer,
-  todos: todosReducer
+  notes: noteReducer,
+  todos: todoReducer
 });
 
 export default rootReducer

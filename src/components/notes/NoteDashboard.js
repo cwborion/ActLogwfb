@@ -10,9 +10,7 @@ class NoteDashboard extends Component {
 
     return (
       <div className="dashboard container">
-
         <NoteList notes={notes} />
-
       </div>
     )
   }
@@ -25,3 +23,4 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(NoteDashboard)
+
