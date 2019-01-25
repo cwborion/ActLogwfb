@@ -9,9 +9,14 @@ const initState = {
 const goalReducer = (state = initState, action) => {
   switch (action.type) {
     case 'ADD_GOAL':
-    console.log('added goal', action.goal)
+      console.log('added goal', action.goal);
+      return state;
+    case 'ADD_GOAL_ERROR':
+      console.log('add goal error', action.err);
+      return state;
+    default:
+     return state;
   }
-  return state
 }
 
 export default goalReducer

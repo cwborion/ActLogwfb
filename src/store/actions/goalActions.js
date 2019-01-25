@@ -1,6 +1,17 @@
 export const addGoal = (goal) => {
-  return (dispatch, getState) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
     // make async call to database
-    dispatch({ type: 'ADD_GOAL', goal });
+    const firestore = getFirestore();
+    firestore.collection('goals').add({
+      ...goal,
+      firstName: 'Caleb',
+      lastName: 'Brenner',
+      userId: 12345,
+      createdAt: new Date()
+    }).then(() => {
+      dispatch({ type: 'ADD_GOAL', goal });
+    }).catch((err) => {
+      dispatch({ type: 'ADD_GOAL_ERROR', err });
+    })
   }
 };

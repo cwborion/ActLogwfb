@@ -1,5 +1,6 @@
 import React from 'react'
 import IncomeSummary from './IncomeSummary'
+import { Link } from 'react-router-dom'
 
 const IncomeList = ({ income }) => {
   return (
@@ -7,7 +8,9 @@ const IncomeList = ({ income }) => {
 
       {income && income.map(income => {
         return (
-          <IncomeSummary income={income} key={income.id} />
+          <Link to={'/income/' + income.id} key={income.id}>
+            <IncomeSummary income={income} key={income.id} />
+          </Link>
         )
       })}
 

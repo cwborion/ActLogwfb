@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import IncomeList from './IncomeList'
 // may be able to make this component stateless fucntional
 import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 class IncomeDashboard extends Component {
   render() {
@@ -19,9 +21,15 @@ class IncomeDashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    income: state.income.income
+    income: state.firestore.ordered.income
   }
 }
 
-export default connect(mapStateToProps)(IncomeDashboard)
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    { collection: 'income' }
+  ])
+)(IncomeDashboard)

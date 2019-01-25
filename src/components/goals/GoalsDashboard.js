@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import GoalsList from './GoalsList'
 // may be able to make this component stateless fucntional
 import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 class GoalsDashboard extends Component {
   render() {
@@ -19,9 +21,15 @@ class GoalsDashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    goals: state.goals.goals
+    goals: state.firestore.ordered.goals
   }
 }
 
-export default connect(mapStateToProps)(GoalsDashboard)
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    { collection: 'goals' }
+  ])
+)(GoalsDashboard)

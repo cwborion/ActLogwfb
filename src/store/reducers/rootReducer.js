@@ -5,6 +5,7 @@ import incomeReducer from './incomeReducer'
 import noteReducer from './noteReducer'
 import todoReducer from './todoReducer'
 import { combineReducers } from 'redux'
+import { firestoreReducer } from 'redux-firestore'
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   goals: goalReducer,
   income: incomeReducer,
   notes: noteReducer,
-  todos: todoReducer
+  todos: todoReducer,
+  firestore: firestoreReducer
 });
 
 export default rootReducer

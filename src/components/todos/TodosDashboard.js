@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import TodosList from './TodosList'
 // may be able to make this component stateless fucntional
 import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 class TodosDashboard extends Component {
   render() {
@@ -19,9 +21,15 @@ class TodosDashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    todos: state.todos.todos
+    todos: state.firestore.ordered.todos
   }
 }
 
-export default connect(mapStateToProps)(TodosDashboard)
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    { collection: 'todos' }
+  ])
+)(TodosDashboard)

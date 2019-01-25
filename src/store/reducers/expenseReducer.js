@@ -9,9 +9,14 @@ const initState = {
 const expenseReducer = (state = initState, action) => {
   switch (action.type) {
     case 'ADD_EXPENSE':
-    console.log('added expense', action.expense)
+      console.log('added expense', action.expense);
+      return state;
+    case 'ADD_EXPENSE_ERROR':
+      console.log('add expense error', action.err);
+      return state;
+    default:
+      return state;
   }
-  return state
 }
 
 export default expenseReducer

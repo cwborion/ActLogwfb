@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import NoteList from './NoteList'
 // may be able to make this component stateless fucntional
 import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 class NoteDashboard extends Component {
   render() {
@@ -17,10 +19,16 @@ class NoteDashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    notes: state.notes.notes
+    notes: state.firestore.ordered.notes
   }
 }
 
-export default connect(mapStateToProps)(NoteDashboard)
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    { collection: 'notes'}
+  ])
+)(NoteDashboard)
 

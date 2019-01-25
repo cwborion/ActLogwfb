@@ -9,9 +9,14 @@ const initState = {
 const noteReducer = (state = initState, action) => {
   switch (action.type) {
     case 'ADD_NOTE':
-    console.log('added note', action.note)
+      console.log('added note', action.note);
+      return state;
+    case 'ADD_NOTE_ERROR':
+      console.log('add note error', action.err);
+      return state;
+    default:
+      return state;
   }
-  return state
 }
 
 export default noteReducer

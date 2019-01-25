@@ -1,13 +1,16 @@
 import React from 'react'
 import ExpenseSummary from './ExpenseSummary'
+import { Link } from 'react-router-dom'
 
 const ExpenseList = ({ expenses }) => {
   return (
     <div className="section">
 
-      { expenses && expenses.map(expense => {
+      {expenses && expenses.map(expense => {
         return (
-          <ExpenseSummary expense={expense} key={expense.id} />
+          <Link to={'/expense/' + expense.id} key={expense.id}>
+            <ExpenseSummary expense={expense} key={expense.id} />
+          </Link>
         )
       })}
 
