@@ -1,15 +1,18 @@
 import React from 'react'
 import TodoSummary from './TodoSummary'
+import { Link } from 'react-router-dom'
 
 const TodosList = ({ todos }) => {
   return (
-    <div className="project-list section">
+    <div className="section">
 
-     { todos && todos.map(todo => {
-       return (
-         <TodoSummary todo={todo} key={todo.id} />
-       )
-     })}
+      {todos && todos.map(todo => {
+        return (
+          <Link to={'/todos/' + todo.id} key={todo.id}>
+            <TodoSummary todo={todo} key={todo.id} />
+          </Link>
+        )
+      })}
 
     </div>
   )

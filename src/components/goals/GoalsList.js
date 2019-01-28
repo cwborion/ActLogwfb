@@ -1,13 +1,16 @@
 import React from 'react'
 import GoalSummary from './GoalSummary'
+import { Link } from 'react-router-dom'
 
 const GoalsList = ({ goals }) => {
   return (
-    <div className="project-list section">
+    <div className="section">
 
-      { goals && goals.map(goal => {
+      {goals && goals.map(goal => {
         return (
-          <GoalSummary goal={goal} key={goal.id} />
+          <Link to={'/goal/' + goal.id} key={goal.id}>
+            <GoalSummary goal={goal} key={goal.id} />
+          </Link>
         )
       })}
 

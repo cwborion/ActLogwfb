@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const IncomeList = ({ income }) => {
   return (
-    <div className="project-list section">
+    <div className="section">
 
       {income && income.map(income => {
         return (
