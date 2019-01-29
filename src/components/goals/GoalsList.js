@@ -9,7 +9,7 @@ const GoalsList = ({ goals }) => {
       {goals && goals.map(goal => {
         return (
           <Link to={'/goal/' + goal.id} key={goal.id}>
-            <GoalSummary goal={goal} key={goal.id} />
+            <GoalSummary goal={goal} />
           </Link>
         )
       })}

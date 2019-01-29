@@ -2,9 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { Redirect } from 'react-router-dom'
+import moment from 'moment'
 
 const NoteDetails = (props) => {
-  const { note } = props;
+  const { note, auth } = props;
+  if (!auth.uid) return <Redirect to='/signin' />
+
   if (note) {
     return (
       <div className="container section">
@@ -14,7 +18,7 @@ const NoteDetails = (props) => {
             <p>{note.note}</p>
           </div>
           <div className="card-action grey lighten-4 grey-text">
-            <div>14th January, 5pm</div>
+            <div>Posted on {moment(note.createdAt.toDate()).format(`LL`)}</div>
           </div>
         </div>
       </div>
@@ -34,7 +38,8 @@ const mapStateToProps = (state, ownProps) => {
   const notes = state.firestore.data.notes;
   const note = notes ? notes[id] : null;
   return {
-    note: note
+    note: note,
+    auth: state.firebase.auth
   }
 }
 

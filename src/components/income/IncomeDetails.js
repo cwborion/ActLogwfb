@@ -2,9 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { Redirect } from 'react-router-dom'
+import moment from 'moment'
 
 const IncomeDetails = (props) => {
-  const { income } = props;
+  const { income, auth } = props;
+  if(!auth.uid) return <Redirect to='/signin' />
+
   if (income) {
     return (
       <div className="container section">
@@ -12,11 +16,11 @@ const IncomeDetails = (props) => {
           <div className="card-content">
             <span className='card-title'>{income.employment}</span>
             <p>Amount Earned: {income.amount}</p>
-            <p>Beginning of pay period: {income.beginPayPeriod}</p>
-            <p>End of pay period: {income.endPayPeriod}</p>
+            <p>Beginning of pay period: {moment(income.beginPayPeriod).format(`LL`)}</p>
+            <p>End of pay period: {moment(income.endPayPeriod).format(`LL`)}</p>
           </div>
           <div className="card-action grey lighten-4 grey-text">
-            <div>14th January, 5pm</div>
+            <div>Posted on {moment(income.createdAt.toDate()).format(`LL`)}</div>
           </div>
         </div>
       </div>
@@ -36,7 +40,8 @@ const mapStateToProps = (state, ownProps) => {
   const incomes = state.firestore.data.income;
   const income = incomes ? incomes[id] : null;
   return {
-    income: income
+    income: income,
+    auth: state.firebase.auth
   }
 }
 

@@ -2,9 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { Redirect } from 'react-router-dom'
+import moment from 'moment'
 
 const GoalDetails = (props) => {
-  const { goal } = props;
+  const { goal, auth } = props;
+  if (!auth.uid) return <Redirect to='/signin' />
+
   if (goal) {
     return (
       <div className="container section">
@@ -12,10 +16,10 @@ const GoalDetails = (props) => {
           <div className="card-content">
             <span className='card-title'>{goal.title}</span>
             <p>{goal.description}</p>
-            <p>I would like to achieve this goal by: {goal.completeDate}</p>
+            <p>I would like to achieve this goal by: {moment(goal.completeDate).format(`LL`)}</p>
           </div>
           <div className="card-action grey lighten-4 grey-text">
-            <div>14th January, 5pm</div>
+            <div>Posted on {moment(goal.createdAt.toDate()).format(`LL`)}</div>
           </div>
         </div>
       </div>
@@ -35,7 +39,8 @@ const mapStateToProps = (state, ownProps) => {
   const goals = state.firestore.data.goals;
   const goal = goals ? goals[id] : null;
   return {
-    goal: goal
+    goal: goal,
+    auth: state.firebase.auth
   }
 }
 

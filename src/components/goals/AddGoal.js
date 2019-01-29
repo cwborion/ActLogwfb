@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addGoal } from '../../store/actions/goalActions'
+import { Redirect } from 'react-router-dom'
 
 class AddGoal extends Component {
   state = {
@@ -19,9 +20,13 @@ class AddGoal extends Component {
     e.preventDefault();
     // console.log(this.state);
     this.props.addGoal(this.state);
+    this.props.history.push('/');
   }
 
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to='/signin' />
+
     return (
       <div className='container'>
         <form onSubmit={this.handleSubmit} className="white">
@@ -49,10 +54,16 @@ class AddGoal extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addGoal: (goal) => dispatch(addGoal(goal))
   }
 }
 
-export default connect(null, mapDispatchToProps)(AddGoal)
+export default connect(mapStateToProps, mapDispatchToProps)(AddGoal)

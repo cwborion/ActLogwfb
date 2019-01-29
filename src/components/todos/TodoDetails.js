@@ -2,9 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { Redirect } from 'react-router-dom'
+import moment from 'moment'
 
 const TodoDetails = (props) => {
-  const { todo } = props;
+  const { todo, auth } = props;
+  if (!auth.uid) return <Redirect to='/signin' />
+
   if (todo) {
     return (
       <div className="container section">
@@ -14,7 +18,7 @@ const TodoDetails = (props) => {
             <p>**Make this into a Delete Todo button or something**</p>
           </div>
           <div className="card-action grey lighten-4 grey-text">
-            <div>14th January, 5pm</div>
+            <div>Posted on {moment(todo.createdAt.toDate()).format(`LL`)}</div>
           </div>
         </div>
       </div>
@@ -34,7 +38,8 @@ const mapStateToProps = (state, ownProps) => {
   const todos = state.firestore.data.todos;
   const todo = todos ? todos[id] : null;
   return {
-    todo: todo
+    todo: todo,
+    auth: state.firebase.auth
   }
 }
 

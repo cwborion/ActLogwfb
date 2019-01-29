@@ -1,20 +1,31 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { signOut} from '../../store/actions/authActions'
 
-const SignedInLinks = () => {
+const SignedInLinks = (props) => {
   return (
     <ul className="right">
       <li className='flow-text'>Go to your...</li>
-      {/* Find a way to edit so that above <li> is larger and distinct */}
       <li><NavLink to='/expense-dashboard'>Expenses</NavLink></li>
       <li><NavLink to='/income-dashboard'>Income</NavLink></li>
-      <li><NavLink to='/goals-dashboard'>Goals</NavLink></li>
-      <li><NavLink to='/todos-dashboard'>Todos</NavLink></li>
-      <li><NavLink to='/notes-dashboard'>Notes</NavLink></li>
-      <li><NavLink to='/'>Log Out</NavLink></li>
-      <li><NavLink to='/' className='btn btn-floating blue darken-4'>CB</NavLink></li>
+      <li><NavLink to='/goal-dashboard'>Goals</NavLink></li>
+      <li><NavLink to='/todo-dashboard'>Todos</NavLink></li>
+      <li><NavLink to='/note-dashboard'>Notes</NavLink></li>
+      <li><a onClick={props.signOut} >Log Out</a></li>
+      <li>
+        <NavLink to='/' className='btn btn-floating blue darken-4'>
+          {props.profile.initials}
+        </NavLink>
+      </li>
     </ul>
   )
 }
 
-export default SignedInLinks
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => dispatch(signOut())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(SignedInLinks)

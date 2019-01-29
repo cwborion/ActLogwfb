@@ -4,11 +4,13 @@ import ExpenseList from './ExpenseList'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { Redirect } from 'react-router-dom'
 
 class ExpenseDashboard extends Component {
   render() {
     console.log(this.props);
-    const { expenses } = this.props;
+    const { expenses, auth } = this.props;
+    if(!auth.uid) return <Redirect to='/signin' />
 
     return (
       <div className="dashboard container">
@@ -23,7 +25,8 @@ class ExpenseDashboard extends Component {
 const mapStateToProps = (state) => {
   console.log(state);
   return {
-    expenses: state.firestore.ordered.expenses
+    expenses: state.firestore.ordered.expenses,
+    auth: state.firebase.auth
   }
 }
 

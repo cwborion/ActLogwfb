@@ -9,7 +9,7 @@ const TodosList = ({ todos }) => {
       {todos && todos.map(todo => {
         return (
           <Link to={'/todo/' + todo.id} key={todo.id}>
-            <TodoSummary todo={todo} key={todo.id} />
+            <TodoSummary todo={todo} />
           </Link>
         )
       })}

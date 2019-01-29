@@ -37,15 +37,15 @@ class App extends Component {
             <Route path='/income/:id' component={IncomeDetails} />
             <Route path='/add-income' component={AddIncome} />
 
-            <Route path='/goals-dashboard' component={GoalsDashboard} />
+            <Route path='/goal-dashboard' component={GoalsDashboard} />
             <Route path='/goal/:id' component={GoalDetails} />
             <Route path='/add-goal' component={AddGoal} />
 
-            <Route path='/todos-dashboard' component={TodosDashboard} />
+            <Route path='/todo-dashboard' component={TodosDashboard} />
             <Route path='/todo/:id' component={TodoDetails} />
             <Route path='/add-todo' component={AddTodo} />
 
-            <Route path='/notes-dashboard' component={NoteDashboard} />
+            <Route path='/note-dashboard' component={NoteDashboard} />
             <Route path='/note/:id' component={NoteDetails} />
             <Route path='/add-note' component={AddNote} />
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../../store/actions/todoActions'
+import { Redirect } from 'react-router-dom'
 
 class AddTodo extends Component {
   state = {
@@ -17,9 +18,13 @@ class AddTodo extends Component {
     e.preventDefault();
     // console.log(this.state);
     this.props.addTodo(this.state);
+    this.props.history.push('/');
   }
 
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to='/signin' />
+
     return (
       <div className='container'>
         <form onSubmit={this.handleSubmit} className="white">
@@ -37,10 +42,16 @@ class AddTodo extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return{
     addTodo: (todo) => dispatch(addTodo(todo))
   }
 }
 
-export default connect(null, mapDispatchToProps)(AddTodo)
+export default connect(mapStateToProps, mapDispatchToProps)(AddTodo)

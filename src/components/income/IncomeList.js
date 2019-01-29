@@ -9,7 +9,7 @@ const IncomeList = ({ income }) => {
       {income && income.map(income => {
         return (
           <Link to={'/income/' + income.id} key={income.id}>
-            <IncomeSummary income={income} key={income.id} />
+            <IncomeSummary income={income} />
           </Link>
         )
       })}
