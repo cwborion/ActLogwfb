@@ -42,11 +42,11 @@ class App extends Component {
             <Route path='/add-goal' component={AddGoal} />
 
             <Route path='/todos-dashboard' component={TodosDashboard} />
-            <Route path='/todos/:id' component={TodoDetails} />
+            <Route path='/todo/:id' component={TodoDetails} />
             <Route path='/add-todo' component={AddTodo} />
 
             <Route path='/notes-dashboard' component={NoteDashboard} />
-            <Route path='/notes/:id' component={NoteDetails} />
+            <Route path='/note/:id' component={NoteDetails} />
             <Route path='/add-note' component={AddNote} />
 
             <Route path='/signin' component={SignIn} />

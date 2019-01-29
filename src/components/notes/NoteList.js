@@ -8,7 +8,7 @@ const NoteList = ({ notes }) => {
 
       {notes && notes.map(note => {
         return (
-          <Link to={'/notes/' + note.id} key={note.id}>
+          <Link to={'/note/' + note.id} key={note.id}>
             <NoteSummary note={note} key={note.id} />
           </Link>
         )
