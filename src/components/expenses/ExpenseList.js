@@ -12,7 +12,8 @@ const ExpenseList = ({ expenses }) => {
             <ExpenseSummary expense={expense} />
           </Link>
         )
-      })}
+      })
+    }
 
     </div>
   )
