@@ -9,7 +9,7 @@ const NoteList = ({ notes }) => {
       {notes && notes.map(note => {
         return (
           <Link to={'/note/' + note.id} key={note.id}>
-            <NoteSummary note={note} />
+            <NoteSummary note={note} id={note.id} />
           </Link>
         )
       })}

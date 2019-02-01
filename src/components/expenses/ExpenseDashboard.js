@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class ExpenseDashboard extends Component {
   render() {
@@ -14,6 +15,8 @@ class ExpenseDashboard extends Component {
 
     return (
       <div className="dashboard container">
+        <h3 className='white-text'>Manage your expenses here!</h3>
+        <Link className="white-text small-add-buttons" to='/add-expense'>Add Expense</Link>
 
         <ExpenseList expenses={expenses} />
 

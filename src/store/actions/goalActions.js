@@ -17,3 +17,17 @@ export const addGoal = (goal) => {
     })
   }
 };
+
+export const deleteGoal = (goal) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    // make async call to database
+    const firestore = getFirestore();
+    firestore.collection('goals').doc(goal).delete()
+    .then(() => {
+      dispatch({ type: 'DELETE_GOAL', goal });
+      console.log(goal);
+    }).catch((err) => {
+      dispatch({ type: 'DELETE_GOAL_ERROR', err });
+    })
+  }
+};

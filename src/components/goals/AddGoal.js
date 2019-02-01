@@ -20,7 +20,8 @@ class AddGoal extends Component {
     e.preventDefault();
     // console.log(this.state);
     this.props.addGoal(this.state);
-    this.props.history.push('/');
+    // this.props.history.push('/');
+    this.props.history.push('/goal-dashboard');
   }
 
   render() {

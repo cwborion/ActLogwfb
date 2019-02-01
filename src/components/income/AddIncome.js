@@ -21,7 +21,8 @@ class AddIncome extends Component {
     e.preventDefault();
     // console.log(this.state);
     this.props.addIncome(this.state);
-    this.props.history.push('/');
+    // this.props.history.push('/');
+    this.props.history.push('/income-dashboard');
   }
 
   render() {

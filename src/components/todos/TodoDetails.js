@@ -15,7 +15,7 @@ const TodoDetails = (props) => {
         <div className="card z-depth-0">
           <div className="card-content">
             <span className='card-title'>{todo.todo}</span>
-            <p>**Make this into a Delete Todo button or something**</p>
+            <button>Delete todo</button>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Posted on {moment(todo.createdAt.toDate()).format(`LL`)}</div>

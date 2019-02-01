@@ -17,3 +17,17 @@ export const addIncome = (income) => {
     })
   }
 };
+
+export const deleteIncome = (income) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    // make async call to database
+    const firestore = getFirestore();
+    firestore.collection('income').doc(income).delete()
+    .then(() => {
+      dispatch({ type: 'DELETE_INCOME', income });
+      console.log(income);
+    }).catch((err) => {
+      dispatch({ type: 'DELETE_INCOME_ERROR', err });
+    })
+  }
+};

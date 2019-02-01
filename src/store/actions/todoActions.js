@@ -17,3 +17,17 @@ export const addTodo = (todo) => {
     })
   }
 };
+
+export const deleteTodo = (todo) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    // make async call to database
+    const firestore = getFirestore();
+    firestore.collection('todos').doc(todo).delete()
+    .then(() => {
+      dispatch({ type: 'DELETE_TODO', todo });
+      console.log(todo);
+    }).catch((err) => {
+      dispatch({ type: 'DELETE_TODO_ERROR', err });
+    })
+  }
+};

@@ -20,7 +20,8 @@ class AddExpense extends Component {
     e.preventDefault();
     // console.log(this.state);
     this.props.addExpense(this.state);
-    this.props.history.push('/');
+    // this.props.history.push('/');
+    this.props.history.push('/expense-dashboard');
   }
 
   render() {

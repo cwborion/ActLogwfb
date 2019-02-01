@@ -18,7 +18,10 @@ class AddTodo extends Component {
     e.preventDefault();
     // console.log(this.state);
     this.props.addTodo(this.state);
-    this.props.history.push('/');
+    // this.props.history.push('/');
+    this.props.history.push('/todo-dashboard');
+    // why does '/' go directly to route, but '/todo-dashboard' blinks on todo
+    // and then renders todos?? Same with others. SOLVE
   }
 
   render() {

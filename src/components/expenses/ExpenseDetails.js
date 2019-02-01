@@ -17,6 +17,7 @@ const ExpenseDetails = (props) => {
             <span className='card-title'>{expense.title}</span>
             <p>Amount: {expense.amount}</p>
             <p>Due by: {moment(expense.dueDate).format(`LL`)}</p>
+            <button>Update Expense</button> <button>Delete Expense</button>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Posted on {moment(expense.createdAt.toDate()).format(`LL`)}</div>
