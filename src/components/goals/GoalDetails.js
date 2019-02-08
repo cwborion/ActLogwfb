@@ -15,6 +15,10 @@ const GoalDetails = (props) => {
     props.history.push('/goal-dashboard');
   }
 
+  const goToUpdate = () => {
+    props.history.push('/update-goal/' + props.match.params.id);
+  }
+
   if (!auth.uid) return <Redirect to='/signin' />
 
   if (goal) {
@@ -25,7 +29,7 @@ const GoalDetails = (props) => {
             <span className='card-title'>{goal.title}</span>
             <p>{goal.description}</p>
             <p>I would like to achieve this goal by: {moment(goal.completeDate).format(`LL`)}</p>
-            <button>Update Goal</button> <button onClick={handleDelete}>Delete Goal</button>
+            <button onClick={goToUpdate}>Update Goal</button> <button onClick={handleDelete}>Delete Goal</button>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Posted on {moment(goal.createdAt.toDate()).format(`LL`)}</div>

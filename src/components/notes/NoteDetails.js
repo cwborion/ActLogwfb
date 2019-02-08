@@ -15,6 +15,10 @@ const NoteDetails = (props) => {
     props.history.push('/note-dashboard');
   }
 
+  const goToUpdate = () => {
+    props.history.push('/update-note/' + props.match.params.id);
+  }
+
   if (!auth.uid) return <Redirect to='/signin' />
 
   if (note) {
@@ -24,7 +28,7 @@ const NoteDetails = (props) => {
           <div className="card-content">
             <span className='card-title'>{note.title}</span>
             <p>{note.note}</p>
-            <button>Update Note</button> <button onClick={handleDelete}>Delete Note</button>
+            <button onClick={goToUpdate}>Edit Note</button> <button onClick={handleDelete}>Delete Note</button>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Posted on {moment(note.createdAt.toDate()).format(`LL`)}</div>

@@ -31,3 +31,18 @@ export const deleteNote = (note) => {
     })
   }
 };
+
+// BELOW CODE STILL NEEDS MODIFIED AND CHANGED
+export const updateNote = (expense) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    // make async call to database
+    const firestore = getFirestore();
+    firestore.collection('expenses').doc(expense).delete()
+    .then(() => {
+      dispatch({ type: 'DELETE_EXPENSE', expense });
+      console.log(expense);
+    }).catch((err) => {
+      dispatch({ type: 'DELETE_EXPENSE_ERROR', err });
+    })
+  }
+};

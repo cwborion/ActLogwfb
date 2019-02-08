@@ -15,6 +15,10 @@ const IncomeDetails = (props) => {
     props.history.push('/income-dashboard');
   }
 
+  const goToUpdate = () => {
+    props.history.push('/update-income/' + props.match.params.id);
+  }
+
   if(!auth.uid) return <Redirect to='/signin' />
 
   if (income) {
@@ -26,7 +30,7 @@ const IncomeDetails = (props) => {
             <p>Amount Earned: {income.amount}</p>
             <p>Beginning of pay period: {moment(income.beginPayPeriod).format(`LL`)}</p>
             <p>End of pay period: {moment(income.endPayPeriod).format(`LL`)}</p>
-            <button>Update Income</button> <button onClick={handleDelete}>Delete Income</button>
+            <button onClick={goToUpdate}>Update Income</button> <button onClick={handleDelete}>Delete Income</button>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Posted on {moment(income.createdAt.toDate()).format(`LL`)}</div>
