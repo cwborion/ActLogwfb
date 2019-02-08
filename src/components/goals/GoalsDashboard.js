@@ -12,13 +12,12 @@ class GoalsDashboard extends Component {
     console.log(this.props);
     const { goals, auth } = this.props;
     if(!auth.uid) return <Redirect to='/signin' />
-
     return (
       <div className="dashboard container">
       <h3 className='white-text'>Manage your goals here!</h3>
         <Link className="white-text small-add-buttons" to='/add-goal'>Add goal</Link>
 
-        <GoalsList goals={goals} />
+        <GoalsList goals={goals} auth={auth} />
 
       </div>
     )

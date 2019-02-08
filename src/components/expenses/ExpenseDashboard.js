@@ -18,7 +18,7 @@ class ExpenseDashboard extends Component {
         <h3 className='white-text'>Manage your expenses here!</h3>
         <Link className="white-text small-add-buttons" to='/add-expense'>Add Expense</Link>
 
-        <ExpenseList expenses={expenses} />
+        <ExpenseList expenses={expenses} auth={auth} />
 
       </div>
     )

@@ -4,9 +4,17 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
+import { deleteGoal } from '../../store/actions/goalActions'
 
 const GoalDetails = (props) => {
   const { goal, auth } = props;
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    props.deleteGoal(props.match.params.id);
+    props.history.push('/goal-dashboard');
+  }
+
   if (!auth.uid) return <Redirect to='/signin' />
 
   if (goal) {
@@ -17,7 +25,7 @@ const GoalDetails = (props) => {
             <span className='card-title'>{goal.title}</span>
             <p>{goal.description}</p>
             <p>I would like to achieve this goal by: {moment(goal.completeDate).format(`LL`)}</p>
-            <button>Update Goal</button> <button>Delete Goal</button>
+            <button>Update Goal</button> <button onClick={handleDelete}>Delete Goal</button>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Posted on {moment(goal.createdAt.toDate()).format(`LL`)}</div>
@@ -45,8 +53,14 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteGoal: (goal) => dispatch(deleteGoal(goal))
+  }
+}
+
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([
     { collection: 'goals' }
   ])

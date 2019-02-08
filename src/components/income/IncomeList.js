@@ -2,16 +2,19 @@ import React from 'react'
 import IncomeSummary from './IncomeSummary'
 import { Link } from 'react-router-dom'
 
-const IncomeList = ({ income }) => {
+const IncomeList = ({ income, auth }) => {
   return (
     <div className="section">
-
       {income && income.map(income => {
-        return (
-          <Link to={'/income/' + income.id} key={income.id}>
-            <IncomeSummary income={income} id={income.id} />
-          </Link>
-        )
+        if (income.userId === auth.uid) {
+          return (
+            <Link to={'/income/' + income.id} key={income.id}>
+              <IncomeSummary income={income} id={income.id} />
+            </Link>
+          )
+        } else {
+          return null;
+        }
       })}
 
     </div>

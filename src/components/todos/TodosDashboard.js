@@ -17,7 +17,7 @@ class TodosDashboard extends Component {
       <h3 className='white-text'>Manage your todos here!</h3>
         <Link className="white-text small-add-buttons" to='/add-todo'>Add Todo</Link>
 
-        <TodosList todos={todos} />
+        <TodosList todos={todos} auth={auth} />
 
       </div>
     )

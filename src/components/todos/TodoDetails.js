@@ -4,9 +4,17 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
+import { deleteTodo } from '../../store/actions/todoActions'
 
 const TodoDetails = (props) => {
   const { todo, auth } = props;
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    props.deleteTodo(props.match.params.id);
+    props.history.push('/todo-dashboard');
+  }
+
   if (!auth.uid) return <Redirect to='/signin' />
 
   if (todo) {
@@ -15,7 +23,7 @@ const TodoDetails = (props) => {
         <div className="card z-depth-0">
           <div className="card-content">
             <span className='card-title'>{todo.todo}</span>
-            <button>Delete todo</button>
+            <button>Update Expense</button> <button onClick={handleDelete}>Delete todo</button>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Posted on {moment(todo.createdAt.toDate()).format(`LL`)}</div>
@@ -43,8 +51,14 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteTodo: (todo) => dispatch(deleteTodo(todo))
+  }
+}
+
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([
     { collection: 'todos'}
   ])

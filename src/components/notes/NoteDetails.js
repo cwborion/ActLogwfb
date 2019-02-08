@@ -4,9 +4,17 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
+import { deleteNote } from '../../store/actions/noteActions'
 
 const NoteDetails = (props) => {
   const { note, auth } = props;
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    props.deleteNote(props.match.params.id);
+    props.history.push('/note-dashboard');
+  }
+
   if (!auth.uid) return <Redirect to='/signin' />
 
   if (note) {
@@ -16,7 +24,7 @@ const NoteDetails = (props) => {
           <div className="card-content">
             <span className='card-title'>{note.title}</span>
             <p>{note.note}</p>
-            <button>Update Note</button> <button>Delete Note</button>
+            <button>Update Note</button> <button onClick={handleDelete}>Delete Note</button>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Posted on {moment(note.createdAt.toDate()).format(`LL`)}</div>
@@ -44,8 +52,14 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteNote: (note) => dispatch(deleteNote(note))
+  }
+}
+
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([
     { collection: 'notes' }
   ])

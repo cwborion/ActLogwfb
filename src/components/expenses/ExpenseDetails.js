@@ -4,9 +4,17 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
+import { deleteExpense } from '../../store/actions/expenseActions'
 
 const ExpenseDetails = (props) => {
   const { expense, auth } = props;
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    props.deleteExpense(props.match.params.id);
+    props.history.push('/expense-dashboard');
+  }
+
   if (!auth.uid) return <Redirect to='/signin' />
 
   if (expense) {
@@ -17,7 +25,7 @@ const ExpenseDetails = (props) => {
             <span className='card-title'>{expense.title}</span>
             <p>Amount: {expense.amount}</p>
             <p>Due by: {moment(expense.dueDate).format(`LL`)}</p>
-            <button>Update Expense</button> <button>Delete Expense</button>
+            <button>Update Expense</button> <button onClick={handleDelete}>Delete Expense</button>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Posted on {moment(expense.createdAt.toDate()).format(`LL`)}</div>
@@ -46,8 +54,14 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteExpense: (expense) => dispatch(deleteExpense(expense))
+  }
+}
+
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([
     { collection: 'expenses' }
   ])
