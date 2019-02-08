@@ -12,6 +12,7 @@ class TodosDashboard extends Component {
     console.log(this.props);
     const { todos, auth } = this.props;
     if(!auth.uid) return <Redirect to='/signin' />
+    
     return (
       <div className="dashboard container">
       <h3 className='white-text'>Manage your todos here!</h3>

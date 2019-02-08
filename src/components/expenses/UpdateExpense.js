@@ -32,30 +32,39 @@ class UpdateExpense extends Component {
     if (!auth.uid) return <Redirect to='/signin' />
     console.log('expense is', this.props.expense);
 
-    return (
-      <div className='container'>
-        <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Update your expense</h5>
-          <div className="input-field">
-            <label htmlFor='title'>Title</label>
-            <input defaultValue={expense.title} type='text' id='title' onChange={this.handleChange} />
-          </div>
-
-          <div className="input-field">
-            <label htmlFor='amount'>Amount</label>
-            <input defaultValue={expense.amount}  type='number' id='amount' onChange={this.handleChange} />
-          </div>
-
-          <div className="input-field">
-            <label htmlFor='dueDate'>Due Date</label>
-            <input defaultValue={moment(expense.dueDate).format(`YYYY-MM-DD`)} type='date' id='dueDate' onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <button className="btn blue darken-3 z-depth-0">Update Expense</button>
-          </div>
-        </form>
+    if (expense) {
+      return (
+        <div className='container'>
+          <form onSubmit={this.handleSubmit} className="white">
+            <h5 className="grey-text text-darken-3">Update your expense</h5>
+            <div className="input-field">
+              <label htmlFor='title'>Title</label>
+              <input defaultValue={expense.title} type='text' id='title' onChange={this.handleChange} />
+            </div>
+  
+            <div className="input-field">
+              <label htmlFor='amount'>Amount</label>
+              <input defaultValue={expense.amount}  type='number' id='amount' onChange={this.handleChange} />
+            </div>
+  
+            <div className="input-field">
+              <label htmlFor='dueDate'>Due Date</label>
+              <input defaultValue={moment(expense.dueDate).format(`YYYY-MM-DD`)} type='date' id='dueDate' onChange={this.handleChange} />
+            </div>
+            <div className="input-field">
+              <button className="btn blue darken-3 z-depth-0">Update Expense</button>
+            </div>
+          </form>
+        </div>
+      )
+    } else {
+      return (
+        <div className="container center">
+        <p className='white-text'>Loading Expense...</p>
       </div>
-    )
+      )
+    }
+    
   }
 }
 

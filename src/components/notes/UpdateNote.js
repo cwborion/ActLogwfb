@@ -30,25 +30,33 @@ class UpdateNote extends Component {
     if (!auth.uid) return <Redirect to='/signin' />
     console.log('expense is', this.props.expense);
 
-    return (
-      <div className='container'>
-        <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Add a note</h5>
-          <div className="input-field">
-            <label htmlFor='title'>Title</label>
-            <input defaultValue={note.title} type='text' id='title' onChange={this.handleChange} />
-          </div>
-          
-          <div className="input-field">
-            <label htmlFor='note'>Note</label>
-            <textarea defaultValue={note.note} id='note' className='materialize-textarea' onChange={this.handleChange}></textarea>
-          </div>
-          <div className="input-field">
-            <button className="btn blue darken-3 z-depth-0">Add Note</button>
-          </div>
-        </form>
+    if (note) {
+      return (
+        <div className='container'>
+          <form onSubmit={this.handleSubmit} className="white">
+            <h5 className="grey-text text-darken-3">Add a note</h5>
+            <div className="input-field">
+              <label htmlFor='title'>Title</label>
+              <input defaultValue={note.title} type='text' id='title' onChange={this.handleChange} />
+            </div>
+            
+            <div className="input-field">
+              <label htmlFor='note'>Note</label>
+              <textarea defaultValue={note.note} id='note' className='materialize-textarea' onChange={this.handleChange}></textarea>
+            </div>
+            <div className="input-field">
+              <button className="btn blue darken-3 z-depth-0">Add Note</button>
+            </div>
+          </form>
+        </div>
+      )
+    } else {
+      return (
+        <div className="container center">
+        <p className='white-text'>Loading Note...</p>
       </div>
-    )
+      )
+    }
   }
 }
 

@@ -40,7 +40,7 @@ const ExpenseDetails = (props) => {
   } else {
     return (
       <div className="container center">
-        <p>Loading Expense...</p>
+        <p className='white-text'>Loading Expense...</p>
       </div>
       )
   }

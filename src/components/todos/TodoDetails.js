@@ -34,7 +34,7 @@ const TodoDetails = (props) => {
   } else {
     return (
       <div className="container center">
-        <p>Loading Todo...</p>
+        <p className='white-text'>Loading Todo...</p>
       </div>
       )
   }

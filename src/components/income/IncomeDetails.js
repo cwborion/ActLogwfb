@@ -41,7 +41,7 @@ const IncomeDetails = (props) => {
   } else {
     return (
       <div className="container center">
-        <p>Loading Income...</p>
+        <p className='white-text'>Loading Income...</p>
       </div>
     )
   }

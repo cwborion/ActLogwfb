@@ -39,7 +39,7 @@ const NoteDetails = (props) => {
   } else {
     return (
       <div className="container center">
-        <p>Loading Note...</p>
+        <p className='white-text'>Loading Note...</p>
       </div>
     )
   }

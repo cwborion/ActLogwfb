@@ -40,7 +40,7 @@ const GoalDetails = (props) => {
   } else {
     return (
       <div className="container center">
-        <p>Loading Goal...</p>
+        <p className='white-text'>Loading Goal...</p>
       </div>
       )
   }
