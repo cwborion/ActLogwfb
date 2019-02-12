@@ -16,7 +16,7 @@ class NoteDashboard extends Component {
     return (
       <div className="dashboard container">
       <h3 className='white-text'>Manage your notes here!</h3>
-        <Link className="white-text small-add-buttons" to='/add-note'>Add Note</Link>
+        <Link className="white-text blue darken-4 small-add-buttons" to='/add-note'>Add Note</Link>
         <NoteList notes={notes} auth={auth} />
       </div>
     )

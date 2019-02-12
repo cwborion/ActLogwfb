@@ -16,7 +16,7 @@ class ExpenseDashboard extends Component {
     return (
       <div className="dashboard container">
         <h3 className='white-text'>Manage your expenses here!</h3>
-        <Link className="white-text small-add-buttons" to='/add-expense'>Add Expense</Link>
+        <Link className="white-text blue darken-4 small-add-buttons" to='/add-expense'>Add Expense</Link>
 
         <ExpenseList expenses={expenses} auth={auth} />
 

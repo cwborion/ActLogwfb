@@ -14,14 +14,14 @@ class Dashboard extends Component {
 
         <h4 className="white-text">Welcome to your own, all-in-one, customizable activity and information logger!</h4>
         <div className='dash-outline'>
-          <h4 className="white-text dash-prompt">What would you like to do?</h4>
+          <h4 className="dash-font dash-prompt">What would you like to do?</h4>
           <hr />
           <div className="row">
             <div className="col s12 m6">
               <h4>
                 <Link className="white-text dash-h4" to='/add-expense'>Add Expense</Link>
               </h4>
-              <p className="white-text flow-text">
+              <p className="dash-font flow-text">
                 List and calculate your expenses (rent, utiliites, subscriptions...)
               </p>
             </div>
@@ -29,7 +29,7 @@ class Dashboard extends Component {
               <h4>
                 <Link className="white-text dash-h4" to='/add-income'>Add Income</Link>
               </h4>
-              <p className="white-text flow-text">Record income collected between particular dates</p>
+              <p className="dash-font flow-text">Record income collected between particular dates</p>
             </div>
           </div>
 
@@ -38,13 +38,13 @@ class Dashboard extends Component {
               <h4>
                 <Link className="white-text dash-h4" to='/add-goal'>Add Goal</Link>
               </h4>
-              <p className="white-text flow-text">Long (or short) term goals you're working towards</p>
+              <p className="dash-font flow-text">Long (or short) term goals you're working towards</p>
             </div>
             <div className="col s12 m5 offset-m1">
               <h4>
                 <Link className="white-text dash-h4" to='/add-todo'>Add Todo</Link>
               </h4>
-              <p className="white-text flow-text">Short term tasks and reminders</p>
+              <p className="dash-font flow-text">Short term tasks and reminders</p>
             </div>
           </div>
 
@@ -53,7 +53,7 @@ class Dashboard extends Component {
               <h4>
                 <Link className="white-text dash-h4" to='/add-note'>Add Note</Link>
               </h4>
-              <p className="white-text flow-text">
+              <p className="dash-font flow-text">
                 Bookmarks, websites, quotes, various account info, things to keep in mind, etc...
             </p>
             </div>

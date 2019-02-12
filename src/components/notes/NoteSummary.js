@@ -14,7 +14,7 @@ class NoteSummary extends Component {
   render() {
     const { note } = this.props;
     return (
-      <div className="card z-depth-0 projet-summary">
+      <div className="card z-depth-0">
         <div className="card-content grey-text-darken-3">
           <span className='card-title'>{note.title}</span>
           <p className='grey-text'>Posted on {moment(note.createdAt.toDate()).format(`LL`)}</p>

@@ -15,7 +15,7 @@ class GoalsDashboard extends Component {
     return (
       <div className="dashboard container">
       <h3 className='white-text'>Manage your goals here!</h3>
-        <Link className="white-text small-add-buttons" to='/add-goal'>Add goal</Link>
+        <Link className="white-text blue darken-4 small-add-buttons" to='/add-goal'>Add goal</Link>
 
         <GoalsList goals={goals} auth={auth} />
 

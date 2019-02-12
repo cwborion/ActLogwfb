@@ -16,7 +16,7 @@ class IncomeDashboard extends Component {
     return (
       <div className="dashboard container">
       <h3 className='white-text'>Manage your income here!</h3>
-        <Link className="white-text small-add-buttons" to='/add-income'>Add Income</Link>
+        <Link className="white-text blue darken-4 small-add-buttons" to='/add-income'>Add Income</Link>
 
         <IncomeList income={income} auth={auth}  />
 
