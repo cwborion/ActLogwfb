@@ -23,26 +23,31 @@ export const deleteNote = (note) => {
     // make async call to database
     const firestore = getFirestore();
     firestore.collection('notes').doc(note).delete()
-    .then(() => {
-      dispatch({ type: 'DELETE_NOTE', note });
-      console.log(note);
-    }).catch((err) => {
-      dispatch({ type: 'DELETE_NOTE_ERROR', err });
-    })
+      .then(() => {
+        dispatch({ type: 'DELETE_NOTE', note });
+        console.log(note);
+      }).catch((err) => {
+        dispatch({ type: 'DELETE_NOTE_ERROR', err });
+      })
   }
 };
 
-// BELOW CODE STILL NEEDS MODIFIED AND CHANGED
-export const updateNote = (expense) => {
+export const updateNote = (note, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // make async call to database
     const firestore = getFirestore();
-    firestore.collection('expenses').doc(expense).delete()
-    .then(() => {
-      dispatch({ type: 'DELETE_EXPENSE', expense });
-      console.log(expense);
-    }).catch((err) => {
-      dispatch({ type: 'DELETE_EXPENSE_ERROR', err });
+    console.log('note id is ', id)
+    console.log('note is ', note)
+    firestore.collection('notes').doc(id).update({
+      ...note,
+      title: note.title,
+      note: note.note
     })
+      .then(() => {
+        dispatch({ type: 'UPDATE_NOTE', note });
+        console.log(note);
+      }).catch((err) => {
+        dispatch({ type: 'UPDATE_NOTE_ERROR', err });
+      })
   }
 };

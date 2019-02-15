@@ -8,7 +8,7 @@ class ExpenseSummary extends Component {
   handleDelete = (e) => {
     e.preventDefault();
     // console.log('props are', this.props.id);
-    this.props.deleteExpense(this.props.id);
+    this.props.deleteExpense(this.state, this.props.id);
   }
 
   render() {

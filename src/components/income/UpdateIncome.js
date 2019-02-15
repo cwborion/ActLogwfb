@@ -7,6 +7,18 @@ import { compose } from 'redux'
 import moment from 'moment'
 
 class UpdateIncome extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      employment: props.income ? props.income.employment : '',
+      amount: props.income ? props.income.amount : Number,
+      beginPayPeriod: props.income ? props.income.beginPayPeriod : Date,
+      endPayPeriod: props.income ? props.income.endPayPeriod : Date
+    }
+    console.log(props.income)
+  }
+  
   state = {
     employment: '',
     amount: Number,
@@ -22,10 +34,9 @@ class UpdateIncome extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // console.log('expense is', this.props.expense);
-    // this.props.updateExpense(this.state);
-
-    // this.props.history.push('/expense/' + expense.id);
+    // console.log('income id is ', this.props.match.params.id);
+    this.props.updateIncome(this.state, this.props.match.params.id);
+    this.props.history.push('/income/' + this.props.match.params.id);
   }
 
   render() {
@@ -86,7 +97,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateIncome: (income) => dispatch(updateIncome(income))
+    updateIncome: (income, id) => dispatch(updateIncome(income, id))
   }
 }
 

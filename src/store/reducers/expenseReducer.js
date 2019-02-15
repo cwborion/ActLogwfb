@@ -14,6 +14,12 @@ const expenseReducer = (state = initState, action) => {
     case 'ADD_EXPENSE_ERROR':
       console.log('add expense error', action.err);
       return state;
+    case 'UPDATE_EXPENSE':
+      console.log('updated expense', action.expense);
+      return state;
+    case 'UPDATE_EXPENSE_ERROR':
+      console.log('update expense error', action.err);
+      return state;
     case 'DELETE_EXPENSE':
       console.log('deleted expense', action.expense);
       return state;

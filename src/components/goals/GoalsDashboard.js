@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 class GoalsDashboard extends Component {
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { goals, auth } = this.props;
     if(!auth.uid) return <Redirect to='/signin' />
     return (
@@ -25,7 +25,7 @@ class GoalsDashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log(state);
   return {
     goals: state.firestore.ordered.goals,
     auth: state.firebase.auth
@@ -35,6 +35,6 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'goals' }
+    { collection: 'goals', orderBy: ['createdAt', 'desc'] }
   ])
 )(GoalsDashboard)

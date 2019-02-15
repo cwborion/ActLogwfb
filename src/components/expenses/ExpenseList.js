@@ -6,6 +6,7 @@ const ExpenseList = ({ expenses, auth }) => {
   return (
     <div className="section">
       {expenses && expenses.map(expense => {
+        console.log(expenses)
         const filtered = expenses.filter((expense, index) => {
           return expenses[index].userId === auth.uid;
         });

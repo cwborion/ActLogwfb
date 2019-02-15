@@ -19,7 +19,7 @@ const Navbar = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log('state is', state);
   return {
     auth: state.firebase.auth,
     profile: state.firebase.profile

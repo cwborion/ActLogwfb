@@ -7,10 +7,15 @@ import { compose } from 'redux'
 import moment from 'moment'
 
 class UpdateExpense extends Component {
-  state = {
-    title: '',
-    amount: Number,
-    dueDate: Date
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      title: props.expense ? props.expense.title : '',
+      amount: props.expense ? props.expense.amount : Number,
+      dueDate: props.expense ? props.expense.dueDate : Date
+    }
+    console.log(props.expense)
   }
 
   handleChange = (e) => {
@@ -21,16 +26,16 @@ class UpdateExpense extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // console.log('expense is', this.props.expense);
-    // this.props.updateExpense(this.state);
-
-    // this.props.history.push('/expense/' + expense.id);
+    // console.log('expense id is ', this.props.match.params.id);
+    this.props.updateExpense(this.state, this.props.match.params.id);
+    this.props.history.push('/expense/' + this.props.match.params.id);
   }
 
   render() {
     const { expense, auth } = this.props;
     if (!auth.uid) return <Redirect to='/signin' />
     console.log('expense is', this.props.expense);
+    console.log('this.state is ', this.state)
 
     if (expense) {
       return (
@@ -82,7 +87,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateExpense: (expense) => dispatch(updateExpense(expense))
+    updateExpense: (expense, id) => dispatch(updateExpense(expense, id))
   }
 }
 

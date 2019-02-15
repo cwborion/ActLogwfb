@@ -23,26 +23,33 @@ export const deleteIncome = (income) => {
     // make async call to database
     const firestore = getFirestore();
     firestore.collection('income').doc(income).delete()
-    .then(() => {
-      dispatch({ type: 'DELETE_INCOME', income });
-      console.log(income);
-    }).catch((err) => {
-      dispatch({ type: 'DELETE_INCOME_ERROR', err });
-    })
+      .then(() => {
+        dispatch({ type: 'DELETE_INCOME', income });
+        console.log(income);
+      }).catch((err) => {
+        dispatch({ type: 'DELETE_INCOME_ERROR', err });
+      })
   }
 };
 
-// BELOW CODE STILL NEEDS MODIFIED AND CHANGED
-export const updateIncome = (expense) => {
+export const updateIncome = (income, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // make async call to database
     const firestore = getFirestore();
-    firestore.collection('expenses').doc(expense).delete()
-    .then(() => {
-      dispatch({ type: 'DELETE_EXPENSE', expense });
-      console.log(expense);
-    }).catch((err) => {
-      dispatch({ type: 'DELETE_EXPENSE_ERROR', err });
+    console.log('expense id is ', id)
+    console.log('expense is ', income)
+    firestore.collection('income').doc(id).update({
+      ...income,
+      employment: income.employment,
+      amount: income.amount,
+      beginPayPeriod: income.beginPayPeriod,
+      endPayPeriod: income.endPayPeriod
     })
+      .then(() => {
+        dispatch({ type: 'UPDATE_INCOME', income });
+        console.log(income);
+      }).catch((err) => {
+        dispatch({ type: 'UPDATE_INCOME_ERROR', err });
+      })
   }
 };

@@ -8,10 +8,15 @@ import { compose } from 'redux'
 import moment from 'moment'
 
 class UpdateGoal extends Component {
-  state = {
-    title: '',
-    description: '',
-    completeDate: Date
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      title: props.goal ? props.goal.title : '',
+      description: props.goal ? props.goal.description : Number,
+      completeDate: props.goal ? props.goal.completeDate : Date
+    }
+    console.log(props.goal)
   }
 
   handleChange = (e) => {
@@ -22,10 +27,9 @@ class UpdateGoal extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // console.log('expense is', this.props.expense);
-    // this.props.updateExpense(this.state);
-
-    // this.props.history.push('/expense/' + expense.id);
+    // console.log('goal id is ', this.props.match.params.id);
+    this.props.updateGoal(this.state, this.props.match.params.id);
+    this.props.history.push('/goal/' + this.props.match.params.id);
   }
 
   render() {
@@ -81,7 +85,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateGoal: (goal) => dispatch(updateGoal(goal))
+    updateGoal: (goal, id) => dispatch(updateGoal(goal, id))
   }
 }
 

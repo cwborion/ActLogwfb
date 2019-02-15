@@ -8,6 +8,7 @@ import { deleteExpense } from '../../store/actions/expenseActions'
 
 const ExpenseDetails = (props) => {
   const { expense, auth } = props;
+  console.log(props)
 
   const handleDelete = (e) => {
     e.preventDefault();

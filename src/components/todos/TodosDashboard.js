@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 class TodosDashboard extends Component {
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { todos, auth } = this.props;
     if(!auth.uid) return <Redirect to='/signin' />
     
@@ -26,7 +26,7 @@ class TodosDashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log(state);
   return {
     todos: state.firestore.ordered.todos,
     auth: state.firebase.auth
@@ -36,6 +36,6 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'todos' }
+    { collection: 'todos', orderBy: ['createdAt', 'desc'] }
   ])
 )(TodosDashboard)

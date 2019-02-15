@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 class IncomeDashboard extends Component {
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { income, auth } = this.props;
     if(!auth.uid) return <Redirect to='/signin' />
 
@@ -26,7 +26,7 @@ class IncomeDashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log(state);
   return {
     income: state.firestore.ordered.income,
     auth: state.firebase.auth
@@ -36,6 +36,6 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'income' }
+    { collection: 'income', orderBy: ['createdAt', 'desc'] }
   ])
 )(IncomeDashboard)

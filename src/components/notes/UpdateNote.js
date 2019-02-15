@@ -6,9 +6,14 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 
 class UpdateNote extends Component {
-  state = {
-    title: '',
-    note: ''
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      title: props.note ? props.note.title : '',
+      note: props.note ? props.note.note : ''
+    }
+    console.log(props.note)
   }
 
   handleChange = (e) => {
@@ -19,16 +24,15 @@ class UpdateNote extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // console.log('expense is', this.props.expense);
-    // this.props.updateExpense(this.state);
-
-    // this.props.history.push('/expense/' + expense.id);
+    // console.log('expense id is ', this.props.match.params.id);
+    this.props.updateNote(this.state, this.props.match.params.id);
+    this.props.history.push('/note/' + this.props.match.params.id);
   }
 
   render() {
     const { note, auth } = this.props;
     if (!auth.uid) return <Redirect to='/signin' />
-    console.log('expense is', this.props.expense);
+    console.log('note is', this.props.note);
 
     if (note) {
       return (
@@ -45,7 +49,7 @@ class UpdateNote extends Component {
               <textarea defaultValue={note.note} id='note' className='materialize-textarea' onChange={this.handleChange}></textarea>
             </div>
             <div className="input-field">
-              <button className="btn blue darken-3 z-depth-0">Add Note</button>
+              <button className="btn blue darken-3 z-depth-0">Update Note</button>
             </div>
           </form>
         </div>
@@ -74,7 +78,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateNote: (note) => dispatch(updateNote(note))
+    updateNote: (note, id) => dispatch(updateNote(note, id))
   }
 }
 

@@ -14,6 +14,12 @@ const incomeReducer = (state = initState, action) => {
     case 'ADD_INCOME_ERROR':
       console.log('add income error', action.err);
       return state;
+    case 'UPDATE_INCOME':
+      console.log('updated income', action.income);
+      return state;
+    case 'UPDATE_INCOME_ERROR':
+      console.log('update income error', action.err);
+      return state;
     case 'DELETE_INCOME':
       console.log('deleted income', action.income);
       return state;

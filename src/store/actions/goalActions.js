@@ -23,26 +23,32 @@ export const deleteGoal = (goal) => {
     // make async call to database
     const firestore = getFirestore();
     firestore.collection('goals').doc(goal).delete()
-    .then(() => {
-      dispatch({ type: 'DELETE_GOAL', goal });
-      console.log(goal);
-    }).catch((err) => {
-      dispatch({ type: 'DELETE_GOAL_ERROR', err });
-    })
+      .then(() => {
+        dispatch({ type: 'DELETE_GOAL', goal });
+        console.log(goal);
+      }).catch((err) => {
+        dispatch({ type: 'DELETE_GOAL_ERROR', err });
+      })
   }
 };
 
-// BELOW CODE STILL NEEDS MODIFIED AND CHANGED
-export const updateGoal = (expense) => {
+export const updateGoal = (goal, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // make async call to database
     const firestore = getFirestore();
-    firestore.collection('expenses').doc(expense).delete()
-    .then(() => {
-      dispatch({ type: 'DELETE_EXPENSE', expense });
-      console.log(expense);
-    }).catch((err) => {
-      dispatch({ type: 'DELETE_EXPENSE_ERROR', err });
+    console.log('goal id is ', id)
+    console.log('goal is ', goal)
+    firestore.collection('goals').doc(id).update({
+      ...goal,
+      title: goal.title,
+      description: goal.description,
+      completeDate: goal.completeDate
     })
+      .then(() => {
+        dispatch({ type: 'UPDATE_GOAL', goal });
+        console.log(goal);
+      }).catch((err) => {
+        dispatch({ type: 'UPDATE_GOAL_ERROR', err });
+      })
   }
 };

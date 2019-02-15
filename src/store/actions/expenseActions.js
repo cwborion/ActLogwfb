@@ -13,7 +13,7 @@ export const addExpense = (expense) => {
     }).then(() => {
       dispatch({ type: 'ADD_EXPENSE', expense });
     }).catch((err) => {
-      dispatch({ type: 'ADD_EXPENSE_ERROR', err});
+      dispatch({ type: 'ADD_EXPENSE_ERROR', err });
     })
   }
 };
@@ -23,26 +23,32 @@ export const deleteExpense = (expense) => {
     // make async call to database
     const firestore = getFirestore();
     firestore.collection('expenses').doc(expense).delete()
-    .then(() => {
-      dispatch({ type: 'DELETE_EXPENSE', expense });
-      console.log(expense);
-    }).catch((err) => {
-      dispatch({ type: 'DELETE_EXPENSE_ERROR', err });
-    })
+      .then(() => {
+        dispatch({ type: 'DELETE_EXPENSE', expense });
+        console.log(expense);
+      }).catch((err) => {
+        dispatch({ type: 'DELETE_EXPENSE_ERROR', err });
+      })
   }
 };
 
-// BELOW CODE STILL NEEDS MODIFIED AND CHANGED
-export const updateExpense = (expense) => {
+export const updateExpense = (expense, id) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // make async call to database
     const firestore = getFirestore();
-    firestore.collection('expenses').doc(expense).delete()
-    .then(() => {
-      dispatch({ type: 'DELETE_EXPENSE', expense });
-      console.log(expense);
-    }).catch((err) => {
-      dispatch({ type: 'DELETE_EXPENSE_ERROR', err });
+    console.log('expense id is ', id)
+    console.log('expense is ', expense)
+    firestore.collection('expenses').doc(id).update({
+      ...expense,
+      title: expense.title,
+      amount: expense.amount,
+      dueDate: expense.dueDate
     })
+      .then(() => {
+        dispatch({ type: 'UPDATE_EXPENSE', expense });
+        console.log(expense);
+      }).catch((err) => {
+        dispatch({ type: 'UPDATE_EXPENSE_ERROR', err });
+      })
   }
 };

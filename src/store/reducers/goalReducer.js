@@ -14,6 +14,12 @@ const goalReducer = (state = initState, action) => {
     case 'ADD_GOAL_ERROR':
       console.log('add goal error', action.err);
       return state;
+    case 'UPDATE_GOAL':
+      console.log('updated goal', action.goal);
+      return state;
+    case 'UPDATE_GOAL_ERROR':
+      console.log('update goal error', action.err);
+      return state;
     case 'DELETE_GOAL':
       console.log('deleted todo', action.goal);
       return state;
