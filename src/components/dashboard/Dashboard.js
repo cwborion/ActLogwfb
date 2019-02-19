@@ -7,7 +7,7 @@ class Dashboard extends Component {
   render() {
     // console.log(this.props);
     const { auth } = this.props;
-    if(!auth.uid) return <Redirect to='/signin' />
+    if (!auth.uid) return <Redirect to='/signin' />
 
     return (
       <div className="dashboard container">
@@ -42,20 +42,22 @@ class Dashboard extends Component {
             </div>
             <div className="col s12 m5 offset-m1">
               <h4>
-                <Link className="white-text dash-h4" to='/add-todo'>Add Todo</Link>
+                <Link className="white-text dash-h4" to='/add-note'>Add Note</Link>
               </h4>
-              <p className="dash-font flow-text">Short term tasks and reminders</p>
+              <p className="dash-font flow-text">
+                Bookmarks, websites, quotes, various account info, things to keep in mind, etc...
+              </p>
             </div>
           </div>
 
           <div className="row">
             <div className="col s12 m6">
               <h4>
-                <Link className="white-text dash-h4" to='/add-note'>Add Note</Link>
+                <Link className="white-text dash-h4" to='/add-todo'>Add Todo</Link>
               </h4>
               <p className="dash-font flow-text">
-                Bookmarks, websites, quotes, various account info, things to keep in mind, etc...
-            </p>
+                Short term tasks and reminders
+              </p>
             </div>
             <div className="col s12 m5 offset-m1">
             </div>

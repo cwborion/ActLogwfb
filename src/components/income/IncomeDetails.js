@@ -5,6 +5,7 @@ import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
 import { deleteIncome } from '../../store/actions/incomeActions'
+import numeral from 'numeral'
 
 const IncomeDetails = (props) => {
   const { income, auth } = props;
@@ -27,7 +28,7 @@ const IncomeDetails = (props) => {
         <div className="card z-depth-0">
           <div className="card-content">
             <span className='card-title'>{income.employment}</span>
-            <p>Amount Earned: {income.amount}</p>
+            <p>Amount Earned: {numeral(income.amount).format('$0,0.00')}</p>
             <p>Beginning of pay period: {moment(income.beginPayPeriod).format(`LL`)}</p>
             <p>End of pay period: {moment(income.endPayPeriod).format(`LL`)}</p>
             <button onClick={goToUpdate}>Update Income</button> <button onClick={handleDelete}>Delete Income</button>

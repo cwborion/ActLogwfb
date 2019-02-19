@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import moment from 'moment'
+import numeral from 'numeral'
 
 class UpdateExpense extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class UpdateExpense extends Component {
     
     this.state = {
       title: props.expense ? props.expense.title : '',
-      amount: props.expense ? props.expense.amount : Number,
+      amount: props.expense ? props.expense.amount : '',
       dueDate: props.expense ? props.expense.dueDate : Date
     }
     console.log(props.expense)
@@ -49,7 +50,7 @@ class UpdateExpense extends Component {
   
             <div className="input-field">
               <label htmlFor='amount'>Amount</label>
-              <input defaultValue={expense.amount}  type='number' id='amount' onChange={this.handleChange} />
+              <input defaultValue={numeral(expense.amount).format('$0,0.00')}  type='text' id='amount' onChange={this.handleChange} />
             </div>
   
             <div className="input-field">

@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import moment from 'moment'
+import numeral from 'numeral'
 
 class UpdateIncome extends Component {
   constructor(props) {
@@ -12,18 +13,11 @@ class UpdateIncome extends Component {
     
     this.state = {
       employment: props.income ? props.income.employment : '',
-      amount: props.income ? props.income.amount : Number,
+      amount: props.income ? props.income.amount : '',
       beginPayPeriod: props.income ? props.income.beginPayPeriod : Date,
       endPayPeriod: props.income ? props.income.endPayPeriod : Date
     }
     console.log(props.income)
-  }
-  
-  state = {
-    employment: '',
-    amount: Number,
-    beginPayPeriod: Date,
-    endPayPeriod: Date
   }
 
   handleChange = (e) => {
@@ -55,7 +49,7 @@ class UpdateIncome extends Component {
   
             <div className="input-field">
               <label htmlFor='amount'>Amount earned</label>
-              <input defaultValue={income.amount} type='number' id='amount' onChange={this.handleChange} />
+              <input defaultValue={numeral(income.amount).format('$0,0.00')} type='text' id='amount' onChange={this.handleChange} />
             </div>
   
             <div className="input-field">
@@ -68,7 +62,7 @@ class UpdateIncome extends Component {
               <input defaultValue={moment(income.endPayPeriod).format(`YYYY-MM-DD`)} type='date' id='endPayPeriod' onChange={this.handleChange} />
             </div>
             <div className="input-field">
-              <button className="btn blue darken-3 z-depth-0">Add Income</button>
+              <button className="btn blue darken-3 z-depth-0">Update Income</button>
             </div>
           </form>
         </div>

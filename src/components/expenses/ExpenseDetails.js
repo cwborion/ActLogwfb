@@ -5,6 +5,7 @@ import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
 import { deleteExpense } from '../../store/actions/expenseActions'
+import numeral from 'numeral'
 
 const ExpenseDetails = (props) => {
   const { expense, auth } = props;
@@ -28,7 +29,7 @@ const ExpenseDetails = (props) => {
         <div className="card z-depth-0">
           <div className="card-content">
             <span className='card-title'>{expense.title}</span>
-            <p>Amount: {expense.amount}</p>
+            <p>Amount: {numeral(expense.amount).format('$0,0.00')}</p>
             <p>Due by: {moment(expense.dueDate).format(`LL`)}</p>
             <button onClick={goToUpdate}>Update Expense</button> <button onClick={handleDelete}>Delete Expense</button>
           </div>

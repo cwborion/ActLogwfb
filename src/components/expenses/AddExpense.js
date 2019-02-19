@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom'
 class AddExpense extends Component {
   state = {
     title: '',
-    amount: Number,
+    amount: '',
     dueDate: Date
   }
 
@@ -39,7 +39,7 @@ class AddExpense extends Component {
 
           <div className="input-field">
             <label htmlFor='amount'>Amount</label>
-            <input type='number' id='amount' onChange={this.handleChange} />
+            <input type='text' id='amount' onChange={this.handleChange} />
           </div>
 
           <div className="input-field">
