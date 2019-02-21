@@ -42,22 +42,22 @@ class UpdateIncome extends Component {
         <div className='container'>
           <form onSubmit={this.handleSubmit} className="white">
             <h5 className="grey-text text-darken-3">Add pay period income</h5>
-            <div className="input-field">
+            <div>
               <label htmlFor='employment'>Employment (however you refer to a specific job or income)</label>
               <input defaultValue={income.employment} type='text' id='employment' onChange={this.handleChange} />
             </div>
   
-            <div className="input-field">
+            <div>
               <label htmlFor='amount'>Amount earned</label>
               <input defaultValue={numeral(income.amount).format('$0,0.00')} type='text' id='amount' onChange={this.handleChange} />
             </div>
   
-            <div className="input-field">
+            <div>
               <label htmlFor='beginPayPeriod'>Beginning date of pay period</label>
               <input defaultValue={moment(income.beginPayPeriod).format(`YYYY-MM-DD`)} type='date' id='beginPayPeriod' onChange={this.handleChange} />
             </div>
   
-            <div className="input-field">
+            <div>
               <label htmlFor='endPayPeriod'>Ending date of pay period</label>
               <input defaultValue={moment(income.endPayPeriod).format(`YYYY-MM-DD`)} type='date' id='endPayPeriod' onChange={this.handleChange} />
             </div>

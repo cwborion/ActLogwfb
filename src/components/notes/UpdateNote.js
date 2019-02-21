@@ -39,12 +39,12 @@ class UpdateNote extends Component {
         <div className='container'>
           <form onSubmit={this.handleSubmit} className="white">
             <h5 className="grey-text text-darken-3">Add a note</h5>
-            <div className="input-field">
+            <div>
               <label htmlFor='title'>Title</label>
               <input defaultValue={note.title} type='text' id='title' onChange={this.handleChange} />
             </div>
             
-            <div className="input-field">
+            <div>
               <label htmlFor='note'>Note</label>
               <textarea defaultValue={note.note} id='note' className='materialize-textarea' onChange={this.handleChange}></textarea>
             </div>

@@ -41,22 +41,22 @@ class UpdateGoal extends Component {
         <div className='container'>
           <form onSubmit={this.handleSubmit} className="white">
             <h5 className="grey-text text-darken-3">Add a goal</h5>
-            <div className="input-field">
+            <div>
               <label htmlFor='title'>Title</label>
               <input defaultValue={goal.title} type='text' id='title' onChange={this.handleChange} />
             </div>
             
-            <div className="input-field">
+            <div>
               <label htmlFor='description'>Description</label>
               <textarea defaultValue={goal.description} id='description' className='materialize-textarea' onChange={this.handleChange}></textarea>
             </div>
   
-            <div className="input-field">
+            <div>
               <label htmlFor='completeDate'>Date for intended completion</label>
               <input defaultValue={moment(goal.completeDate).format(`YYYY-MM-DD`)} type='date' id='completeDate' onChange={this.handleChange} />
             </div>
             <div className="input-field">
-              <button className="btn blue darken-3 z-depth-0">Add Goal</button>
+              <button className="btn blue darken-3 z-depth-0">Update Goal</button>
             </div>
           </form>
         </div>

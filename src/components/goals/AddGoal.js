@@ -42,7 +42,7 @@ class AddGoal extends Component {
             <textarea id='description' className='materialize-textarea' onChange={this.handleChange}></textarea>
           </div>
 
-          <div className="input-field">
+          <div>
             <label htmlFor='completeDate'>Date for intended completion</label>
             <input type='date' id='completeDate' onChange={this.handleChange} />
           </div>

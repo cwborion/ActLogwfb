@@ -43,12 +43,12 @@ class AddIncome extends Component {
             <input type='text' id='amount' onChange={this.handleChange} />
           </div>
 
-          <div className="input-field">
+          <div>
             <label htmlFor='beginPayPeriod'>Beginning date of pay period</label>
             <input type='date' id='beginPayPeriod' onChange={this.handleChange} />
           </div>
 
-          <div className="input-field">
+          <div>
             <label htmlFor='endPayPeriod'>Ending date of pay period</label>
             <input type='date' id='endPayPeriod' onChange={this.handleChange} />
           </div>

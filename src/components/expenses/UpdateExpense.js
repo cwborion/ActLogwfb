@@ -43,17 +43,17 @@ class UpdateExpense extends Component {
         <div className='container'>
           <form onSubmit={this.handleSubmit} className="white">
             <h5 className="grey-text text-darken-3">Update your expense</h5>
-            <div className="input-field">
+            <div>
               <label htmlFor='title'>Title</label>
               <input defaultValue={expense.title} type='text' id='title' onChange={this.handleChange} />
             </div>
   
-            <div className="input-field">
+            <div>
               <label htmlFor='amount'>Amount</label>
               <input defaultValue={numeral(expense.amount).format('$0,0.00')}  type='text' id='amount' onChange={this.handleChange} />
             </div>
   
-            <div className="input-field">
+            <div>
               <label htmlFor='dueDate'>Due Date</label>
               <input defaultValue={moment(expense.dueDate).format(`YYYY-MM-DD`)} type='date' id='dueDate' onChange={this.handleChange} />
             </div>

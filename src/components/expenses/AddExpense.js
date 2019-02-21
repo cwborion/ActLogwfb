@@ -42,7 +42,7 @@ class AddExpense extends Component {
             <input type='text' id='amount' onChange={this.handleChange} />
           </div>
 
-          <div className="input-field">
+          <div>
             <label htmlFor='dueDate'>Due Date</label>
             <input type='date' id='dueDate' onChange={this.handleChange} />
           </div>
