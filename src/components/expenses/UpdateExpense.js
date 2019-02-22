@@ -25,7 +25,20 @@ class UpdateExpense extends Component {
     })
   }
 
+  submitEnabled() {
+    const { title, amount, dueDate } = this.state;
+    return (
+      title.length > 0 &&
+      amount.length > 0 &&
+      dueDate !== Date
+    );
+  }
+
   handleSubmit = (e) => {
+    if (!this.submitEnabled()) {
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
     // console.log('expense id is ', this.props.match.params.id);
     this.props.updateExpense(this.state, this.props.match.params.id);
@@ -34,6 +47,7 @@ class UpdateExpense extends Component {
 
   render() {
     const { expense, auth } = this.props;
+    const isEnabled = this.submitEnabled();
     if (!auth.uid) return <Redirect to='/signin' />
     console.log('expense is', this.props.expense);
     console.log('this.state is ', this.state)
@@ -58,7 +72,7 @@ class UpdateExpense extends Component {
               <input defaultValue={moment(expense.dueDate).format(`YYYY-MM-DD`)} type='date' id='dueDate' onChange={this.handleChange} />
             </div>
             <div className="input-field">
-              <button className="btn blue darken-3 z-depth-0">Update Expense</button>
+              <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Update</button>
             </div>
           </form>
         </div>

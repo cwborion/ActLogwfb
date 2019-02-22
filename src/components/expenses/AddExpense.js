@@ -16,16 +16,28 @@ class AddExpense extends Component {
     })
   }
 
+  submitEnabled() {
+    const { title, amount, dueDate } = this.state;
+    return (
+      title.length > 0 &&
+      amount.length > 0 &&
+      dueDate !== Date
+    );
+  }
+
   handleSubmit = (e) => {
+    if (!this.submitEnabled()) {
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
-    // console.log(this.state);
     this.props.addExpense(this.state);
-    // this.props.history.push('/');
     this.props.history.push('/expense-dashboard');
   }
 
   render() {
     const { auth } = this.props;
+    const isEnabled = this.submitEnabled();
     if (!auth.uid) return <Redirect to='/signin' />
 
     return (
@@ -47,7 +59,7 @@ class AddExpense extends Component {
             <input type='date' id='dueDate' onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <button className="btn blue darken-3 z-depth-0">Add Expense</button>
+            <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Add Expense</button>
           </div>
         </form>
       </div>

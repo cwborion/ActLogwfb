@@ -17,13 +17,26 @@ class SignUp extends Component {
     })
   }
 
+  submitEnabled() {
+    const { firstName, lastName } = this.state;
+    return (
+      firstName.length > 0 &&
+      lastName.length > 0
+    );
+  }
+
   handleSubmit = (e) => {
+    if (!this.submitEnabled()) {
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
     this.props.signUp(this.state);
   }
 
   render() {
     const { auth, authError } = this.props;
+    const isEnabled = this.submitEnabled();
     if (auth.uid) return <Redirect to='/' />
 
     return (
@@ -51,9 +64,9 @@ class SignUp extends Component {
           </div>
 
           <div className="input-field">
-            <button className="btn blue darken-3 z-depth-0">Sign Up</button>
+            <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Sign Up</button>
             <div className="red-text center">
-              { authError ? <p>{ authError }</p> : null }
+              {authError ? <p>{authError}</p> : null}
             </div>
           </div>
         </form>

@@ -15,16 +15,27 @@ class AddExpense extends Component {
     })
   }
 
+  submitEnabled() {
+    const { title, note } = this.state;
+    return (
+      title.length > 0 &&
+      note.length > 0 
+    );
+  }
+
   handleSubmit = (e) => {
+    if (!this.submitEnabled()) {
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
-    // console.log(this.state);
     this.props.addNote(this.state);
-    // this.props.history.push('/');
     this.props.history.push('/note-dashboard');
   }
 
   render() {
     const { auth } = this.props;
+    const isEnabled = this.submitEnabled();
     if (!auth.uid) return <Redirect to='/signin' />
 
     return (
@@ -41,7 +52,7 @@ class AddExpense extends Component {
             <textarea id='note' className='materialize-textarea' onChange={this.handleChange}></textarea>
           </div>
           <div className="input-field">
-            <button className="btn blue darken-3 z-depth-0">Add Note</button>
+            <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Add Note</button>
           </div>
         </form>
       </div>

@@ -28,7 +28,7 @@ const NoteDetails = (props) => {
           <div className="card-content">
             <span className='card-title'>{note.title}</span>
             <p>{note.note}</p>
-            <button onClick={goToUpdate}>Edit Note</button> <button onClick={handleDelete}>Delete Note</button>
+            <button onClick={goToUpdate}>Update Note</button> <button onClick={handleDelete}>Delete Note</button>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Posted on {moment(note.createdAt.toDate()).format(`LL`)}</div>

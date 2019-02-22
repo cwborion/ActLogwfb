@@ -14,18 +14,26 @@ class AddTodo extends Component {
     })
   }
 
+  submitEnabled() {
+    const { todo } = this.state;
+    return (
+      todo.length > 0 
+    );
+  }
+
   handleSubmit = (e) => {
+    if (!this.submitEnabled()) {
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
-    // console.log(this.state);
     this.props.addTodo(this.state);
-    // this.props.history.push('/');
     this.props.history.push('/todo-dashboard');
-    // why does '/' go directly to route, but '/todo-dashboard' blinks on todo
-    // and then renders todos?? Same with others. SOLVE
   }
 
   render() {
     const { auth } = this.props;
+    const isEnabled = this.submitEnabled();
     if (!auth.uid) return <Redirect to='/signin' />
 
     return (
@@ -37,7 +45,7 @@ class AddTodo extends Component {
             <input type='text' id='todo' onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <button className="btn blue darken-3 z-depth-0">Add Todo</button>
+            <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Add Todo</button>
           </div>
         </form>
       </div>

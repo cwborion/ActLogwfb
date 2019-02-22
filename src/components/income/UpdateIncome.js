@@ -26,7 +26,21 @@ class UpdateIncome extends Component {
     })
   }
 
+  submitEnabled() {
+    const { employment, amount, beginPayPeriod, endPayPeriod } = this.state;
+    return (
+      employment.length > 0 &&
+      amount.length > 0 &&
+      beginPayPeriod !== Date &&
+      endPayPeriod !== Date 
+    );
+  }
+
   handleSubmit = (e) => {
+    if (!this.submitEnabled()) {
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
     // console.log('income id is ', this.props.match.params.id);
     this.props.updateIncome(this.state, this.props.match.params.id);
@@ -35,13 +49,14 @@ class UpdateIncome extends Component {
 
   render() {
     const { income, auth } = this.props;
+    const isEnabled = this.submitEnabled();
     if (!auth.uid) return <Redirect to='/signin' />
 
     if (income) {
       return (
         <div className='container'>
           <form onSubmit={this.handleSubmit} className="white">
-            <h5 className="grey-text text-darken-3">Add pay period income</h5>
+            <h5 className="grey-text text-darken-3">Update pay period income</h5>
             <div>
               <label htmlFor='employment'>Employment (however you refer to a specific job or income)</label>
               <input defaultValue={income.employment} type='text' id='employment' onChange={this.handleChange} />
@@ -62,7 +77,7 @@ class UpdateIncome extends Component {
               <input defaultValue={moment(income.endPayPeriod).format(`YYYY-MM-DD`)} type='date' id='endPayPeriod' onChange={this.handleChange} />
             </div>
             <div className="input-field">
-              <button className="btn blue darken-3 z-depth-0">Update Income</button>
+              <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Update</button>
             </div>
           </form>
         </div>

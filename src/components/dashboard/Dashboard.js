@@ -6,13 +6,19 @@ import { Redirect } from 'react-router-dom'
 class Dashboard extends Component {
   render() {
     // console.log(this.props);
-    const { auth } = this.props;
+    const { auth, profile } = this.props;
     if (!auth.uid) return <Redirect to='/signin' />
+    console.log('this.props is ', this.props)
 
     return (
       <div className="dashboard container">
-
-        <h4 className="white-text">Welcome to your own, all-in-one, customizable activity and information logger!</h4>
+        <p className='dash-name'>
+          {profile.firstName} {profile.lastName}: <span className='signed-in'>currently signed in</span>
+        </p>
+        <h4 className="white-text">
+          Hello <span className='dash-name'>{profile.firstName}</span>
+          , welcome to your own, all-in-one, activity and information logger!
+        </h4>
         <div className='dash-outline'>
           <h4 className="dash-font dash-prompt">What would you like to do?</h4>
           <hr />
@@ -71,7 +77,8 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   // console.log('state is', state);
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
   }
 }
 

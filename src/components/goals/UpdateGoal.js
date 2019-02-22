@@ -25,7 +25,20 @@ class UpdateGoal extends Component {
     })
   }
 
+  submitEnabled() {
+    const { title, description, completeDate } = this.state;
+    return (
+      title.length > 0 &&
+      description.length > 0 &&
+      completeDate !== Date
+    );
+  }
+
   handleSubmit = (e) => {
+    if (!this.submitEnabled()) {
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
     // console.log('goal id is ', this.props.match.params.id);
     this.props.updateGoal(this.state, this.props.match.params.id);
@@ -34,13 +47,14 @@ class UpdateGoal extends Component {
 
   render() {
     const { goal, auth } = this.props;
+    const isEnabled = this.submitEnabled();
     if (!auth.uid) return <Redirect to='/signin' />
 
     if (goal) {
       return (
         <div className='container'>
           <form onSubmit={this.handleSubmit} className="white">
-            <h5 className="grey-text text-darken-3">Add a goal</h5>
+            <h5 className="grey-text text-darken-3">Update goal</h5>
             <div>
               <label htmlFor='title'>Title</label>
               <input defaultValue={goal.title} type='text' id='title' onChange={this.handleChange} />
@@ -56,7 +70,7 @@ class UpdateGoal extends Component {
               <input defaultValue={moment(goal.completeDate).format(`YYYY-MM-DD`)} type='date' id='completeDate' onChange={this.handleChange} />
             </div>
             <div className="input-field">
-              <button className="btn blue darken-3 z-depth-0">Update Goal</button>
+              <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Update</button>
             </div>
           </form>
         </div>

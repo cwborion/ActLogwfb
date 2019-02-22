@@ -22,7 +22,19 @@ class UpdateNote extends Component {
     })
   }
 
+  submitEnabled() {
+    const { title, note } = this.state;
+    return (
+      title.length > 0 &&
+      note.length > 0 
+    );
+  }
+
   handleSubmit = (e) => {
+    if (!this.submitEnabled()) {
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
     // console.log('expense id is ', this.props.match.params.id);
     this.props.updateNote(this.state, this.props.match.params.id);
@@ -31,6 +43,7 @@ class UpdateNote extends Component {
 
   render() {
     const { note, auth } = this.props;
+    const isEnabled = this.submitEnabled();
     if (!auth.uid) return <Redirect to='/signin' />
     console.log('note is', this.props.note);
 
@@ -38,7 +51,7 @@ class UpdateNote extends Component {
       return (
         <div className='container'>
           <form onSubmit={this.handleSubmit} className="white">
-            <h5 className="grey-text text-darken-3">Add a note</h5>
+            <h5 className="grey-text text-darken-3">Update note</h5>
             <div>
               <label htmlFor='title'>Title</label>
               <input defaultValue={note.title} type='text' id='title' onChange={this.handleChange} />
@@ -49,7 +62,7 @@ class UpdateNote extends Component {
               <textarea defaultValue={note.note} id='note' className='materialize-textarea' onChange={this.handleChange}></textarea>
             </div>
             <div className="input-field">
-              <button className="btn blue darken-3 z-depth-0">Update Note</button>
+              <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Update</button>
             </div>
           </form>
         </div>

@@ -17,16 +17,29 @@ class AddIncome extends Component {
     })
   }
 
+  submitEnabled() {
+    const { employment, amount, beginPayPeriod, endPayPeriod } = this.state;
+    return (
+      employment.length > 0 &&
+      amount.length > 0 &&
+      beginPayPeriod !== Date &&
+      endPayPeriod !== Date 
+    );
+  }
+
   handleSubmit = (e) => {
+    if (!this.submitEnabled()) {
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
-    // console.log(this.state);
     this.props.addIncome(this.state);
-    // this.props.history.push('/');
     this.props.history.push('/income-dashboard');
   }
 
   render() {
     const { auth } = this.props;
+    const isEnabled = this.submitEnabled();
     if (!auth.uid) return <Redirect to='/signin' />
 
     return (
@@ -53,7 +66,7 @@ class AddIncome extends Component {
             <input type='date' id='endPayPeriod' onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <button className="btn blue darken-3 z-depth-0">Add Income</button>
+            <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Add Income</button>
           </div>
         </form>
       </div>

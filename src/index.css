@@ -53,6 +53,15 @@ form button, form h5 {
   background-color: rgb(24, 22, 26);
 }
 
+.dash-name {
+  color: rgb(57, 131, 216);
+  font-style: italic;
+}
+
+.signed-in {
+  color: rgb(223, 24, 57);
+}
+
 hr {
   height: 1px;
     border: 0;

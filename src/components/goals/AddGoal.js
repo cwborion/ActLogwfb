@@ -16,16 +16,28 @@ class AddGoal extends Component {
     })
   }
 
+  submitEnabled() {
+    const { title, description, completeDate } = this.state;
+    return (
+      title.length > 0 &&
+      description.length > 0 &&
+      completeDate !== Date
+    );
+  }
+
   handleSubmit = (e) => {
+    if (!this.submitEnabled()) {
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
-    // console.log(this.state);
     this.props.addGoal(this.state);
-    // this.props.history.push('/');
     this.props.history.push('/goal-dashboard');
   }
 
   render() {
     const { auth } = this.props;
+    const isEnabled = this.submitEnabled();
     if (!auth.uid) return <Redirect to='/signin' />
 
     return (
@@ -47,7 +59,7 @@ class AddGoal extends Component {
             <input type='date' id='completeDate' onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <button className="btn blue darken-3 z-depth-0">Add Goal</button>
+            <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Add Goal</button>
           </div>
         </form>
       </div>
