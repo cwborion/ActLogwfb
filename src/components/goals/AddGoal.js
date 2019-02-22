@@ -21,7 +21,7 @@ class AddGoal extends Component {
     return (
       title.length > 0 &&
       description.length > 0 &&
-      completeDate !== Date
+      completeDate.length === 10
     );
   }
 

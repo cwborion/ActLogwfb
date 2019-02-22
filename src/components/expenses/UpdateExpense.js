@@ -10,7 +10,7 @@ import numeral from 'numeral'
 class UpdateExpense extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       title: props.expense ? props.expense.title : '',
       amount: props.expense ? props.expense.amount : '',
@@ -27,10 +27,12 @@ class UpdateExpense extends Component {
 
   submitEnabled() {
     const { title, amount, dueDate } = this.state;
+    const regex = /^(\d+|\d{1,3}(,\d{3})*)(\.\d+)?$/;
     return (
       title.length > 0 &&
       amount.length > 0 &&
-      dueDate !== Date
+      regex.test(amount) &&
+      dueDate.length === 10
     );
   }
 
@@ -52,6 +54,11 @@ class UpdateExpense extends Component {
     console.log('expense is', this.props.expense);
     console.log('this.state is ', this.state)
 
+    // var regex = /^(\d+|\d{1,3}(,\d{3})*)(\.\d+)?$/;
+    // if (regex.test(this.props.expense.amount)) {
+    //   console.log('regex working?')
+    // }
+
     if (expense) {
       return (
         <div className='container'>
@@ -61,12 +68,16 @@ class UpdateExpense extends Component {
               <label htmlFor='title'>Title</label>
               <input defaultValue={expense.title} type='text' id='title' onChange={this.handleChange} />
             </div>
-  
+
             <div>
-              <label htmlFor='amount'>Amount</label>
-              <input defaultValue={numeral(expense.amount).format('$0,0.00')}  type='text' id='amount' onChange={this.handleChange} />
+              <label htmlFor='amount'>
+                Amount <span className='amount-hint'>
+                  *(example: '1,200,300.05'. be sure to properly place commas and decimals)
+                </span>
+              </label>
+              <input defaultValue={numeral(expense.amount).format('0,0.00')} type='text' id='amount' onChange={this.handleChange} />
             </div>
-  
+
             <div>
               <label htmlFor='dueDate'>Due Date</label>
               <input defaultValue={moment(expense.dueDate).format(`YYYY-MM-DD`)} type='date' id='dueDate' onChange={this.handleChange} />
@@ -80,11 +91,11 @@ class UpdateExpense extends Component {
     } else {
       return (
         <div className="container center">
-        <p className='white-text'>Loading Expense...</p>
-      </div>
+          <p className='white-text'>Loading Expense...</p>
+        </div>
       )
     }
-    
+
   }
 }
 

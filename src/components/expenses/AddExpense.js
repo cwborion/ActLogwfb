@@ -18,10 +18,14 @@ class AddExpense extends Component {
 
   submitEnabled() {
     const { title, amount, dueDate } = this.state;
+    const regex = /^(\d+|\d{1,3}(,\d{3})*)(\.\d+)?$/;
     return (
       title.length > 0 &&
       amount.length > 0 &&
-      dueDate !== Date
+      // !isNaN(amount) && 
+      // maybe refactor with above rendition if regex doesn't work
+      regex.test(amount) &&
+      dueDate.length === 10
     );
   }
 
@@ -50,7 +54,11 @@ class AddExpense extends Component {
           </div>
 
           <div className="input-field">
-            <label htmlFor='amount'>Amount</label>
+            <label htmlFor='amount'>
+              Amount <span className='amount-hint'>
+                *(example: '1,200,300.05'. be sure to properly place commas and decimals)
+              </span>
+            </label>
             <input type='text' id='amount' onChange={this.handleChange} />
           </div>
 

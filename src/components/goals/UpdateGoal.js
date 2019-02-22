@@ -13,7 +13,7 @@ class UpdateGoal extends Component {
     
     this.state = {
       title: props.goal ? props.goal.title : '',
-      description: props.goal ? props.goal.description : Number,
+      description: props.goal ? props.goal.description : '',
       completeDate: props.goal ? props.goal.completeDate : Date
     }
     console.log(props.goal)
@@ -30,7 +30,7 @@ class UpdateGoal extends Component {
     return (
       title.length > 0 &&
       description.length > 0 &&
-      completeDate !== Date
+      completeDate.length === 10
     );
   }
 

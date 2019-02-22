@@ -10,7 +10,7 @@ import numeral from 'numeral'
 class UpdateIncome extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       employment: props.income ? props.income.employment : '',
       amount: props.income ? props.income.amount : '',
@@ -28,11 +28,13 @@ class UpdateIncome extends Component {
 
   submitEnabled() {
     const { employment, amount, beginPayPeriod, endPayPeriod } = this.state;
+    const regex = /^(\d+|\d{1,3}(,\d{3})*)(\.\d+)?$/;
     return (
       employment.length > 0 &&
       amount.length > 0 &&
-      beginPayPeriod !== Date &&
-      endPayPeriod !== Date 
+      regex.test(amount) &&
+      beginPayPeriod.length === 10 &&
+      endPayPeriod.length === 10
     );
   }
 
@@ -61,17 +63,21 @@ class UpdateIncome extends Component {
               <label htmlFor='employment'>Employment (however you refer to a specific job or income)</label>
               <input defaultValue={income.employment} type='text' id='employment' onChange={this.handleChange} />
             </div>
-  
+
             <div>
-              <label htmlFor='amount'>Amount earned</label>
-              <input defaultValue={numeral(income.amount).format('$0,0.00')} type='text' id='amount' onChange={this.handleChange} />
+              <label htmlFor='amount'>
+                Amount earned <span className='amount-hint'>
+                  *(example: '1,200,300.05'. be sure to properly place commas and decimals)
+              </span>
+              </label>
+              <input defaultValue={numeral(income.amount).format('0,0.00')} type='text' id='amount' onChange={this.handleChange} />
             </div>
-  
+
             <div>
               <label htmlFor='beginPayPeriod'>Beginning date of pay period</label>
               <input defaultValue={moment(income.beginPayPeriod).format(`YYYY-MM-DD`)} type='date' id='beginPayPeriod' onChange={this.handleChange} />
             </div>
-  
+
             <div>
               <label htmlFor='endPayPeriod'>Ending date of pay period</label>
               <input defaultValue={moment(income.endPayPeriod).format(`YYYY-MM-DD`)} type='date' id='endPayPeriod' onChange={this.handleChange} />
@@ -85,8 +91,8 @@ class UpdateIncome extends Component {
     } else {
       return (
         <div className="container center">
-        <p className='white-text'>Loading Income...</p>
-      </div>
+          <p className='white-text'>Loading Income...</p>
+        </div>
       )
     }
   }

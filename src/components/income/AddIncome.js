@@ -19,11 +19,13 @@ class AddIncome extends Component {
 
   submitEnabled() {
     const { employment, amount, beginPayPeriod, endPayPeriod } = this.state;
+    const regex = /^(\d+|\d{1,3}(,\d{3})*)(\.\d+)?$/;
     return (
       employment.length > 0 &&
       amount.length > 0 &&
-      beginPayPeriod !== Date &&
-      endPayPeriod !== Date 
+      regex.test(amount) &&
+      beginPayPeriod.length === 10 &&
+      endPayPeriod.length === 10
     );
   }
 
@@ -52,7 +54,11 @@ class AddIncome extends Component {
           </div>
 
           <div className="input-field">
-            <label htmlFor='amount'>Amount earned</label>
+            <label htmlFor='amount'>
+              Amount earned <span className='amount-hint'>
+                *(example: '1,200,300.05'. be sure to properly place commas and decimals)
+              </span>
+            </label>
             <input type='text' id='amount' onChange={this.handleChange} />
           </div>
 
