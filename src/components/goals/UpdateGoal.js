@@ -25,6 +25,12 @@ class UpdateGoal extends Component {
     })
   }
 
+  componentDidMount() {
+    // localStorage.setItem(e.target.id, e.target.value)
+    // use local storage with this to get props/state to persist on refreshes from update pages?
+    console.log('comonentDidMount is firing', this.props)
+  }
+
   submitEnabled() {
     const { title, description, completeDate } = this.state;
     return (

@@ -17,6 +17,10 @@ body {
   min-height: 100%
 }
 
+.logo-sz {
+  font-size: 30px;
+}
+
 form {
   padding: 20px;
   margin-top: 60px;

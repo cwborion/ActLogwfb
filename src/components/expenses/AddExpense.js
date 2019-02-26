@@ -22,8 +22,6 @@ class AddExpense extends Component {
     return (
       title.length > 0 &&
       amount.length > 0 &&
-      // !isNaN(amount) && 
-      // maybe refactor with above rendition if regex doesn't work
       regex.test(amount) &&
       dueDate.length === 10
     );
