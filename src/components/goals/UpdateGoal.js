@@ -75,6 +75,10 @@ class UpdateGoal extends Component {
               <label htmlFor='completeDate'>Date for intended completion</label>
               <input defaultValue={moment(goal.completeDate).format(`YYYY-MM-DD`)} type='date' id='completeDate' onChange={this.handleChange} />
             </div>
+            <div>
+              {this.state.title === '' && this.state.description === '' ? <p className='red-text center'>please make changes to input fields to update</p> 
+              : null }
+            </div>
             <div className="input-field">
               <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Update</button>
             </div>
