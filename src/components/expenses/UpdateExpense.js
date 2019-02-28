@@ -54,11 +54,6 @@ class UpdateExpense extends Component {
     console.log('expense is', this.props.expense);
     console.log('this.state is ', this.state)
 
-    // var regex = /^(\d+|\d{1,3}(,\d{3})*)(\.\d+)?$/;
-    // if (regex.test(this.props.expense.amount)) {
-    //   console.log('regex working?')
-    // }
-
     if (expense) {
       return (
         <div className='container'>
