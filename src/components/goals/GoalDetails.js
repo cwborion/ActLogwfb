@@ -24,7 +24,7 @@ const GoalDetails = (props) => {
   if (goal) {
     return (
       <div className="container section row">
-        <div className='col s12 m10'>
+        <div className='col s12 m8'>
           <div className="card z-depth-0">
             <div className="card-content">
               <span className='card-title'>{goal.title}</span>

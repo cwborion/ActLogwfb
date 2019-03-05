@@ -17,8 +17,6 @@ const GoalsList = ({ goals, auth }) => {
           )
         } else if (filtered.length === 0) {
           goals.length = 0;
-          // For some reason when the 'Goals' navlink is clicked in the navbar when the 'no goals' 
-          // message is already rendering, it disappears. Try to fix this.
           return filtered.length === 0 ? 
             <p key={1} className='white-text'>
             Looks like you don't have any goals. Click the 'Add Goal' button to start!
