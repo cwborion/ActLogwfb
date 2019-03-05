@@ -45,36 +45,38 @@ class AddIncome extends Component {
     if (!auth.uid) return <Redirect to='/signin' />
 
     return (
-      <div className='container'>
-        <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Add pay period income</h5>
-          <div className="input-field">
-            <label htmlFor='employment'>Employment (however you refer to a specific job or income)</label>
-            <input type='text' id='employment' onChange={this.handleChange} />
-          </div>
+      <div className='container row'>
+        <div className='col s12 m9'>
+          <form onSubmit={this.handleSubmit} className="white">
+            <h5 className="grey-text text-darken-3">Add pay period income</h5>
+            <div className="input-field">
+              <label htmlFor='employment'>Employment (however you refer to a specific job or income)</label>
+              <input type='text' id='employment' onChange={this.handleChange} />
+            </div>
 
-          <div className="input-field">
-            <label htmlFor='amount'>
-              Amount earned <span className='amount-hint'>
-                *(example: '1,200,300.05'. be sure to properly place commas and decimals)
+            <div className="input-field">
+              <label htmlFor='amount'>
+                Amount earned <span className='amount-hint'>
+                  *(example: '1,200,300.05'. be sure to properly place commas and decimals)
               </span>
-            </label>
-            <input type='text' id='amount' onChange={this.handleChange} />
-          </div>
+              </label>
+              <input type='text' id='amount' onChange={this.handleChange} />
+            </div>
 
-          <div>
-            <label htmlFor='beginPayPeriod'>Beginning date of pay period</label>
-            <input type='date' id='beginPayPeriod' onChange={this.handleChange} />
-          </div>
+            <div>
+              <label htmlFor='beginPayPeriod'>Beginning date of pay period</label>
+              <input type='date' id='beginPayPeriod' onChange={this.handleChange} />
+            </div>
 
-          <div>
-            <label htmlFor='endPayPeriod'>Ending date of pay period</label>
-            <input type='date' id='endPayPeriod' onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Add Income</button>
-          </div>
-        </form>
+            <div>
+              <label htmlFor='endPayPeriod'>Ending date of pay period</label>
+              <input type='date' id='endPayPeriod' onChange={this.handleChange} />
+            </div>
+            <div className="input-field">
+              <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Add Income</button>
+            </div>
+          </form>
+        </div>
       </div>
     )
   }

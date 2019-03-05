@@ -65,35 +65,37 @@ class UpdateGoal extends Component {
 
     if (goal) {
       return (
-        <div className='container'>
-          <form onSubmit={this.handleSubmit} className="white">
-            <h5 className="grey-text text-darken-3">Update goal</h5>
-            <div>
-              <label htmlFor='title'>Title</label>
-              <input defaultValue={goal.title} type='text' id='title' onChange={this.handleChange} />
-            </div>
+        <div className='container row'>
+          <div className='col s12 m10'>
+            <form onSubmit={this.handleSubmit} className="white">
+              <h5 className="grey-text text-darken-3">Update goal</h5>
+              <div>
+                <label htmlFor='title'>Title</label>
+                <input defaultValue={goal.title} type='text' id='title' onChange={this.handleChange} />
+              </div>
 
-            <div>
-              <label htmlFor='description'>Description</label>
-              <textarea defaultValue={goal.description} id='description' className='materialize-textarea' onChange={this.handleChange}></textarea>
-            </div>
+              <div>
+                <label htmlFor='description'>Description</label>
+                <textarea defaultValue={goal.description} id='description' className='materialize-textarea' onChange={this.handleChange}></textarea>
+              </div>
 
-            <div>
-              <label htmlFor='completeDate'>Date for intended completion</label>
-              <input defaultValue={moment(goal.completeDate).format(`YYYY-MM-DD`)} 
-                     type='date' id='completeDate' 
-                     onChange={this.handleChange} 
-              />
-            </div>
+              <div>
+                <label htmlFor='completeDate'>Date for intended completion</label>
+                <input defaultValue={moment(goal.completeDate).format(`YYYY-MM-DD`)}
+                  type='date' id='completeDate'
+                  onChange={this.handleChange}
+                />
+              </div>
               {/* <p className='update-hint center'>
                 * do not refresh this page before updating, it will result in loss of form info, in that
                 event <button className='update-hint-btn blue-text' onClick={this.goBack}>go back</button> 
                 &nbsp;to start over
               </p> */}
-            <div className="input-field">
-              <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Update</button>
-            </div>
-          </form>
+              <div className="input-field">
+                <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Update</button>
+              </div>
+            </form>
+          </div>
         </div>
       )
     } else {

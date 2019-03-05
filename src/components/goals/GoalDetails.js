@@ -23,16 +23,18 @@ const GoalDetails = (props) => {
 
   if (goal) {
     return (
-      <div className="container section">
-        <div className="card z-depth-0">
-          <div className="card-content">
-            <span className='card-title'>{goal.title}</span>
-            <p>{goal.description}</p>
-            <p>I would like to achieve this goal by: {moment(goal.completeDate).format(`LL`)}</p>
-            <button onClick={goToUpdate}>Update Goal</button> <button onClick={handleDelete}>Delete Goal</button>
-          </div>
-          <div className="card-action grey lighten-4 grey-text">
-            <div>Posted on {moment(goal.createdAt.toDate()).format(`LL`)}</div>
+      <div className="container section row">
+        <div className='col s12 m10'>
+          <div className="card z-depth-0">
+            <div className="card-content">
+              <span className='card-title'>{goal.title}</span>
+              <p>{goal.description}</p>
+              <p>I would like to achieve this goal by: {moment(goal.completeDate).format(`LL`)}</p>
+              <button onClick={goToUpdate}>Update Goal</button> <button onClick={handleDelete}>Delete Goal</button>
+            </div>
+            <div className="card-action grey lighten-4 grey-text">
+              <div>Posted on {moment(goal.createdAt.toDate()).format(`LL`)}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -42,7 +44,7 @@ const GoalDetails = (props) => {
       <div className="container center">
         <p className='white-text'>Loading Goal...</p>
       </div>
-      )
+    )
   }
 }
 

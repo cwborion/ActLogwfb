@@ -14,10 +14,10 @@ class GoalSummary extends Component {
   render() {
     const { goal } = this.props;
     return (
-      <div className="card z-depth-0 projet-summary">
-        <div className="card-content grey-text-darken-3">
+      <div className="card z-depth-0 list-opac">
+        <div className="card-content">
           <span className='card-title'>{goal.title}</span>
-          <p className='grey-text'>Posted on {moment(goal.createdAt.toDate()).format(`LL`)}</p>
+          <p className='grey-text text-darken-2'>Posted on {moment(goal.createdAt.toDate()).format(`LL`)}</p>
           <button onClick={this.handleDelete}>Delete Goal</button>
         </div>
       </div>

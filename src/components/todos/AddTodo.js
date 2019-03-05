@@ -17,7 +17,7 @@ class AddTodo extends Component {
   submitEnabled() {
     const { todo } = this.state;
     return (
-      todo.length > 0 
+      todo.length > 0
     );
   }
 
@@ -37,17 +37,19 @@ class AddTodo extends Component {
     if (!auth.uid) return <Redirect to='/signin' />
 
     return (
-      <div className='container'>
-        <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Add to your todo list</h5>
-          <div className="input-field">
-            <label htmlFor='todo'>Todo</label>
-            <input type='text' id='todo' onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Add Todo</button>
-          </div>
-        </form>
+      <div className='container row'>
+        <div className='col s12 m10'>
+          <form onSubmit={this.handleSubmit} className="white">
+            <h5 className="grey-text text-darken-3">Add to your todo list</h5>
+            <div className="input-field">
+              <label htmlFor='todo'>Todo</label>
+              <input type='text' id='todo' onChange={this.handleChange} />
+            </div>
+            <div className="input-field">
+              <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Add Todo</button>
+            </div>
+          </form>
+        </div>
       </div>
     )
   }
@@ -60,7 +62,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return{
+  return {
     addTodo: (todo) => dispatch(addTodo(todo))
   }
 }

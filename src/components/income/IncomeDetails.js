@@ -20,21 +20,23 @@ const IncomeDetails = (props) => {
     props.history.push('/update-income/' + props.match.params.id);
   }
 
-  if(!auth.uid) return <Redirect to='/signin' />
+  if (!auth.uid) return <Redirect to='/signin' />
 
   if (income) {
     return (
-      <div className="container section">
-        <div className="card z-depth-0">
-          <div className="card-content">
-            <span className='card-title'>{income.employment}</span>
-            <p>Amount Earned: {numeral(income.amount).format('$0,0.00')}</p>
-            <p>Beginning of pay period: {moment(income.beginPayPeriod).format(`LL`)}</p>
-            <p>End of pay period: {moment(income.endPayPeriod).format(`LL`)}</p>
-            <button onClick={goToUpdate}>Update Income</button> <button onClick={handleDelete}>Delete Income</button>
-          </div>
-          <div className="card-action grey lighten-4 grey-text">
-            <div>Posted on {moment(income.createdAt.toDate()).format(`LL`)}</div>
+      <div className="container section row">
+        <div className='col s12 m8'>
+          <div className="card z-depth-0">
+            <div className="card-content">
+              <span className='card-title'>{income.employment}</span>
+              <p>Amount Earned: {numeral(income.amount).format('$0,0.00')}</p>
+              <p>Beginning of pay period: {moment(income.beginPayPeriod).format(`LL`)}</p>
+              <p>End of pay period: {moment(income.endPayPeriod).format(`LL`)}</p>
+              <button onClick={goToUpdate}>Update Income</button> <button onClick={handleDelete}>Delete Income</button>
+            </div>
+            <div className="card-action grey lighten-4 grey-text">
+              <div>Posted on {moment(income.createdAt.toDate()).format(`LL`)}</div>
+            </div>
           </div>
         </div>
       </div>

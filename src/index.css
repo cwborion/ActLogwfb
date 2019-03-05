@@ -31,7 +31,6 @@ form button, form h5 {
 }
 
 .dash-h4 {
-  /* background-color: rgb(20, 17, 179); */
   background-color: rgb(6, 5, 105);
   padding: 9px;
   border: 1px solid rgb(57, 131, 216);
@@ -42,7 +41,6 @@ form button, form h5 {
   border: 2px solid rgb(57, 131, 216);
   border-radius: 14px;
   background-color: rgb(251, 251, 253, 0.65);
-  /* background-color: rgb(238, 236, 236); */
 }
 
 .dash-font {
@@ -107,6 +105,18 @@ hr {
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+}
+
+.dash-h3 {
+  padding-left: 10px;
+}
+
+.list-opac {
+  background-color: rgba(251, 251, 253, 0.9);
+}
+
+.auth-btn {
+  border: 1px solid rgb(20,101,192);
 }
 
 input[type=text]:not(.browser-default):focus:not([readonly]),

@@ -19,14 +19,16 @@ const TodoDetails = (props) => {
 
   if (todo) {
     return (
-      <div className="container section">
-        <div className="card z-depth-0">
-          <div className="card-content">
-            <span className='card-title'>{todo.todo}</span>
-            <button onClick={handleDelete}>Delete todo</button>
-          </div>
-          <div className="card-action grey lighten-4 grey-text">
-            <div>Posted on {moment(todo.createdAt.toDate()).format(`LL`)}</div>
+      <div className="container section row">
+        <div className='col s12 m8'>
+          <div className="card z-depth-0">
+            <div className="card-content">
+              <span className='card-title'>{todo.todo}</span>
+              <button onClick={handleDelete}>Delete todo</button>
+            </div>
+            <div className="card-action grey lighten-4 grey-text">
+              <div>Posted on {moment(todo.createdAt.toDate()).format(`LL`)}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -36,7 +38,7 @@ const TodoDetails = (props) => {
       <div className="container center">
         <p className='white-text'>Loading Todo...</p>
       </div>
-      )
+    )
   }
 }
 
@@ -60,6 +62,6 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([
-    { collection: 'todos'}
+    { collection: 'todos' }
   ])
 )(TodoDetails)

@@ -25,18 +25,20 @@ const ExpenseDetails = (props) => {
 
   if (expense) {
     return (
-      <div className="container section">
-        <div className="card z-depth-0">
-          <div className="card-content">
-            <span className='card-title'>{expense.title}</span>
-            <p>Amount: {numeral(expense.amount).format('$0,0.00')}</p>
-            <p>Due by: {moment(expense.dueDate).format(`LL`)}</p>
-            <button onClick={goToUpdate}>Update Expense</button> <button onClick={handleDelete}>Delete Expense</button>
+      <div className="container section row">
+          <div className='col s12 m8'>
+            <div className="card z-depth-0">
+              <div className="card-content">
+                <span className='card-title'>{expense.title}</span>
+                <p>Amount: {numeral(expense.amount).format('$0,0.00')}</p>
+                <p>Due by: {moment(expense.dueDate).format(`LL`)}</p>
+                <button onClick={goToUpdate}>Update Expense</button> <button onClick={handleDelete}>Delete Expense</button>
+              </div>
+              <div className="card-action grey lighten-4 grey-text">
+                <div>Posted on {moment(expense.createdAt.toDate()).format(`LL`)}</div>
+              </div>
+            </div>
           </div>
-          <div className="card-action grey lighten-4 grey-text">
-            <div>Posted on {moment(expense.createdAt.toDate()).format(`LL`)}</div>
-          </div>
-        </div>
       </div>
     )
   } else {
@@ -44,7 +46,7 @@ const ExpenseDetails = (props) => {
       <div className="container center">
         <p className='white-text'>Loading Expense...</p>
       </div>
-      )
+    )
   }
 }
 

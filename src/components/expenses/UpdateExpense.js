@@ -56,31 +56,33 @@ class UpdateExpense extends Component {
 
     if (expense) {
       return (
-        <div className='container'>
-          <form onSubmit={this.handleSubmit} className="white">
-            <h5 className="grey-text text-darken-3">Update your expense</h5>
-            <div>
-              <label htmlFor='title'>Title</label>
-              <input defaultValue={expense.title} type='text' id='title' onChange={this.handleChange} />
-            </div>
+        <div className='container row'>
+            <div className='col s12 m8'>
+              <form onSubmit={this.handleSubmit} className="white">
+                <h5 className="grey-text text-darken-3">Update your expense</h5>
+                <div>
+                  <label htmlFor='title'>Title</label>
+                  <input defaultValue={expense.title} type='text' id='title' onChange={this.handleChange} />
+                </div>
 
-            <div>
-              <label htmlFor='amount'>
-                Amount <span className='amount-hint'>
-                  *(example: '1,200,300.05'. be sure to properly place commas and decimals)
+                <div>
+                  <label htmlFor='amount'>
+                    Amount <span className='amount-hint'>
+                      *(example: '1,200,300.05'. be sure to properly place commas and decimals)
                 </span>
-              </label>
-              <input defaultValue={numeral(expense.amount).format('0,0.00')} type='text' id='amount' onChange={this.handleChange} />
-            </div>
+                  </label>
+                  <input defaultValue={numeral(expense.amount).format('0,0.00')} type='text' id='amount' onChange={this.handleChange} />
+                </div>
 
-            <div>
-              <label htmlFor='dueDate'>Due Date</label>
-              <input defaultValue={moment(expense.dueDate).format(`YYYY-MM-DD`)} type='date' id='dueDate' onChange={this.handleChange} />
+                <div>
+                  <label htmlFor='dueDate'>Due Date</label>
+                  <input defaultValue={moment(expense.dueDate).format(`YYYY-MM-DD`)} type='date' id='dueDate' onChange={this.handleChange} />
+                </div>
+                <div className="input-field">
+                  <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Update</button>
+                </div>
+              </form>
             </div>
-            <div className="input-field">
-              <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Update</button>
-            </div>
-          </form>
         </div>
       )
     } else {

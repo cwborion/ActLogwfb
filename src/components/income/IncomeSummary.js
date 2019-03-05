@@ -14,10 +14,10 @@ class IncomeSummary extends Component {
   render() {
     const { income } = this.props;
     return (
-      <div className="card z-depth-0 projet-summary">
-        <div className="card-content grey-text-darken-3">
+      <div className="card z-depth-0 list-opac">
+        <div className="card-content">
           <span className='card-title'>{income.employment}</span>
-          <p className='grey-text'>Posted on {moment(income.createdAt.toDate()).format(`LL`)}</p>
+          <p className='grey-text text-darken-2'>Posted on {moment(income.createdAt.toDate()).format(`LL`)}</p>
           <button onClick={this.handleDelete}>Delete Income</button>
         </div>
       </div>

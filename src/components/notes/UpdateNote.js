@@ -8,7 +8,7 @@ import { compose } from 'redux'
 class UpdateNote extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       title: props.note ? props.note.title : '',
       note: props.note ? props.note.note : ''
@@ -26,7 +26,7 @@ class UpdateNote extends Component {
     const { title, note } = this.state;
     return (
       title.length > 0 &&
-      note.length > 0 
+      note.length > 0
     );
   }
 
@@ -49,29 +49,31 @@ class UpdateNote extends Component {
 
     if (note) {
       return (
-        <div className='container'>
-          <form onSubmit={this.handleSubmit} className="white">
-            <h5 className="grey-text text-darken-3">Update note</h5>
-            <div>
-              <label htmlFor='title'>Title</label>
-              <input defaultValue={note.title} type='text' id='title' onChange={this.handleChange} />
-            </div>
-            
-            <div>
-              <label htmlFor='note'>Note</label>
-              <textarea defaultValue={note.note} id='note' className='materialize-textarea' onChange={this.handleChange}></textarea>
-            </div>
-            <div className="input-field">
-              <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Update</button>
-            </div>
-          </form>
+        <div className='container row'>
+          <div className='col s12 m10'>
+            <form onSubmit={this.handleSubmit} className="white">
+              <h5 className="grey-text text-darken-3">Update note</h5>
+              <div>
+                <label htmlFor='title'>Title</label>
+                <input defaultValue={note.title} type='text' id='title' onChange={this.handleChange} />
+              </div>
+
+              <div>
+                <label htmlFor='note'>Note</label>
+                <textarea defaultValue={note.note} id='note' className='materialize-textarea' onChange={this.handleChange}></textarea>
+              </div>
+              <div className="input-field">
+                <button className="btn blue darken-3 z-depth-0" disabled={!isEnabled}>Update</button>
+              </div>
+            </form>
+          </div>
         </div>
       )
     } else {
       return (
         <div className="container center">
-        <p className='white-text'>Loading Note...</p>
-      </div>
+          <p className='white-text'>Loading Note...</p>
+        </div>
       )
     }
   }

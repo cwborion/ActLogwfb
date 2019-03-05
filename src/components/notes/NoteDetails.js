@@ -23,15 +23,17 @@ const NoteDetails = (props) => {
 
   if (note) {
     return (
-      <div className="container section">
-        <div className="card z-depth-0">
-          <div className="card-content">
-            <span className='card-title'>{note.title}</span>
-            <p>{note.note}</p>
-            <button onClick={goToUpdate}>Update Note</button> <button onClick={handleDelete}>Delete Note</button>
-          </div>
-          <div className="card-action grey lighten-4 grey-text">
-            <div>Posted on {moment(note.createdAt.toDate()).format(`LL`)}</div>
+      <div className="container section row">
+        <div className='col s12 m8'>
+          <div className="card z-depth-0">
+            <div className="card-content">
+              <span className='card-title'>{note.title}</span>
+              <p>{note.note}</p>
+              <button onClick={goToUpdate}>Update Note</button> <button onClick={handleDelete}>Delete Note</button>
+            </div>
+            <div className="card-action grey lighten-4 grey-text">
+              <div>Posted on {moment(note.createdAt.toDate()).format(`LL`)}</div>
+            </div>
           </div>
         </div>
       </div>

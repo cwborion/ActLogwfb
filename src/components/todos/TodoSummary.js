@@ -14,10 +14,10 @@ class TodoSummary extends Component {
   render() {
     const { todo } = this.props;
     return (
-      <div className="card z-depth-0 projet-summary">
+      <div className="card z-depth-0 list-opac">
         <div className="card-content grey-text-darken-3">
           <span className='card-title'>{todo.todo}</span>
-          <p className='grey-text'>Posted on {moment(todo.createdAt.toDate()).format(`LL`)}</p>
+          <p className='grey-text text-darken-2'>Posted on {moment(todo.createdAt.toDate()).format(`LL`)}</p>
           <button onClick={this.handleDelete}>Delete Todo</button>
         </div>
       </div>

@@ -14,10 +14,10 @@ class ExpenseSummary extends Component {
   render() {
     const { expense } = this.props;
     return (
-      <div className="card z-depth-0">
-        <div className="card-content grey-text-darken-3">
+      <div className="card z-depth-0 list-opac">
+        <div className="card-content">
           <span className='card-title'>{expense.title}</span>
-          <p className='grey-text'>Posted on {moment(expense.createdAt.toDate()).format(`LL`)}</p>
+          <p className='grey-text text-darken-2'>Posted on {moment(expense.createdAt.toDate()).format(`LL`)}</p>
           <button onClick={this.handleDelete}>Delete Expense</button>
         </div>
       </div>
