@@ -63,7 +63,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteIncome: (expense) => dispatch(deleteIncome(expense))
+    deleteIncome: (income) => dispatch(deleteIncome(income))
   }
 }
 
